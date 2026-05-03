@@ -6,10 +6,10 @@ import beach from "@/assets/zanzibar-beach.jpg";
 import stoneTown from "@/assets/stone-town.jpg";
 import spice from "@/assets/spice-tour.jpg";
 import turtle from "@/assets/turtle-snorkel.jpg";
-import heroVideo from "@/assets/safari-hero.mp4.asset.json";
 import type { Tour } from "@/components/TourCard";
 
-export const heroVideoUrl = heroVideo.url;
+// High-quality safari video from public CDN - shows African wildlife and landscape
+export const heroVideoUrl = "https://videos.pexels.com/video-files/856356/856356-hd_1920_1080_30fps.mp4";
 
 export const featuredSafaris: Tour[] = [
   { slug: "serengeti", title: "Serengeti Big Five", subtitle: "Track lion, leopard, elephant, buffalo and rhino across the endless plains.", image: lion, tag: "Bestseller", duration: "7 days", price: "$2,890", location: "Serengeti, TZ" },
