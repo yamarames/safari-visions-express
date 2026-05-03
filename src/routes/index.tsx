@@ -28,12 +28,7 @@ function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/50" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
 
-      <div className="absolute top-20 md:top-24 inset-x-0 z-10">
-        <div className="container-pro flex items-center justify-between text-white/70 font-mono text-[10px] uppercase tracking-[0.28em]">
-          <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" /> Live · 06°09'S 39°11'E</span>
-          <span className="hidden md:block tnum">N° 001 / Featured Itinerary</span>
-        </div>
-      </div>
+
 
       <div className="relative container-pro pb-20 pt-32 text-white">
         <div className="max-w-3xl animate-fade-up">
