@@ -21,30 +21,53 @@ function Hero() {
     <section className="relative min-h-[100svh] flex items-end overflow-hidden">
       <video
         autoPlay loop muted playsInline
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover scale-[1.02]"
       >
         <source src={heroVideoUrl} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+
+      <div className="absolute top-20 md:top-24 inset-x-0 z-10">
+        <div className="container-pro flex items-center justify-between text-white/70 font-mono text-[10px] uppercase tracking-[0.28em]">
+          <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" /> Live · 06°09'S 39°11'E</span>
+          <span className="hidden md:block tnum">N° 001 / Featured Itinerary</span>
+        </div>
+      </div>
 
       <div className="relative container-pro pb-20 pt-32 text-white">
         <div className="max-w-3xl animate-fade-up">
-          <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/80 mb-6">
+          <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/80 mb-6 flex items-center gap-3">
+            <span className="h-px w-8 bg-white/60" />
             Est. 2005 · Stone Town, Zanzibar
           </div>
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight">
-            Tanzania, told by the people who <em className="italic font-light">live</em> it.
+          <h1 className="font-display text-5xl md:text-7xl lg:text-[8.5rem] leading-[0.98] tracking-[-0.03em]">
+            Tanzania, told<br />by the people who <em className="italic font-light text-white/90">live</em> it.
           </h1>
-          <p className="mt-7 text-base md:text-lg text-white/85 max-w-xl leading-relaxed">
+          <p className="mt-8 text-base md:text-lg text-white/85 max-w-xl leading-relaxed">
             Tailor-made safaris in the Serengeti and slow-travel escapes across Zanzibar — designed and guided by a local team of forty.
           </p>
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-foreground font-medium px-7 py-3.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
-              Plan my trip <ArrowRight size={16} />
+          <div className="mt-10 flex flex-wrap items-center gap-5">
+            <Link to="/contact" className="group inline-flex items-center gap-2 bg-white text-foreground font-medium px-7 py-3.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+              Plan my trip
+              <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
             </Link>
-            <Link to="/safaris" className="inline-flex items-center gap-2 text-white/90 font-medium px-2 py-3.5 underline-link">
-              Browse safaris
+            <Link to="/safaris" className="inline-flex items-center gap-2 text-white/90 font-medium quiet-link">
+              Browse safaris →
             </Link>
+          </div>
+
+          <div className="mt-14 grid grid-cols-3 gap-8 max-w-lg pt-8 border-t border-white/15">
+            {[
+              { k: "12.4k", v: "Travelers" },
+              { k: "4.97", v: "Rating" },
+              { k: "20", v: "Years" },
+            ].map((s) => (
+              <div key={s.v}>
+                <div className="font-display text-2xl md:text-3xl tnum">{s.k}</div>
+                <div className="text-[10px] uppercase tracking-[0.22em] text-white/60 mt-1 font-mono">{s.v}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
