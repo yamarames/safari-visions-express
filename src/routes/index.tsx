@@ -18,49 +18,54 @@ export const Route = createFileRoute("/")({
 
 function Hero() {
   return (
-    <section className="relative h-[78vh] min-h-[560px] -mt-[72px] overflow-hidden">
+    <section className="relative h-[82vh] min-h-[600px] -mt-[72px] overflow-hidden">
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover animate-slow-zoom"
         poster=""
       >
         <source src={heroVideoUrl} type="video/mp4" />
       </video>
       <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/30 to-transparent" />
+      <div className="absolute inset-0 grain" />
+      <div
+        className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full opacity-25 blur-3xl pointer-events-none"
+        style={{ background: "var(--gradient-emerald-gold)" }}
+      />
 
-      <div className="relative h-full flex flex-col justify-end px-6 md:px-12 pb-16 max-w-3xl">
-        <div className="flex items-center gap-2 mb-4 text-xs font-bold uppercase tracking-[0.2em] text-primary animate-float">
-          <Sparkles size={14} /> Featured Journey
+      <div className="relative h-full flex flex-col justify-end px-6 md:px-12 pb-20 max-w-3xl">
+        <div className="flex items-center gap-2 mb-5 text-[11px] font-bold uppercase tracking-[0.28em] gold-text animate-float">
+          <Sparkles size={14} style={{ color: "oklch(0.84 0.13 85)" }} /> Featured Journey
         </div>
-        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] mb-4">
+        <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-black leading-[0.9] mb-6 animate-fade-up">
           Tanzania,<br />
-          <span className="gradient-text">unscripted.</span>
+          <span className="gradient-text italic font-medium">unscripted.</span>
         </h1>
-        <p className="text-lg text-muted-foreground max-w-xl mb-6">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8 leading-relaxed animate-fade-up" style={{ animationDelay: "0.15s" }}>
           From the Serengeti's roaring sunrise to Zanzibar's turquoise dusk — press play on the trip of a lifetime.
         </p>
-        <div className="flex items-center gap-3 flex-wrap">
-          <button className="flex items-center gap-2 bg-primary text-primary-foreground font-bold px-7 py-3.5 rounded-full hover:scale-105 active:scale-95 transition pulse-glow">
+        <div className="flex items-center gap-3 flex-wrap animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <button className="flex items-center gap-2 bg-primary text-primary-foreground font-bold px-8 py-4 rounded-full hover:scale-105 active:scale-95 transition pulse-glow">
             <Play size={18} fill="currentColor" /> Play Highlights
           </button>
-          <button className="flex items-center gap-2 bg-background/40 backdrop-blur border border-border text-foreground font-semibold px-6 py-3.5 rounded-full hover:bg-background/60 transition">
+          <button className="frame-gold flex items-center gap-2 glass-strong text-foreground font-semibold px-7 py-4 rounded-full hover:bg-background/60 transition">
             <MapPin size={16} /> Plan my safari
           </button>
         </div>
 
-        <div className="flex gap-6 mt-10 text-xs">
+        <div className="flex gap-8 md:gap-10 mt-12 text-xs animate-fade-up" style={{ animationDelay: "0.45s" }}>
           {[
             { k: "12k+", v: "Travelers hosted" },
             { k: "4.97", v: "Guest rating" },
             { k: "20yr", v: "On the ground" },
           ].map((s) => (
             <div key={s.v}>
-              <div className="text-2xl font-display font-bold">{s.k}</div>
-              <div className="text-muted-foreground uppercase tracking-wider">{s.v}</div>
+              <div className="text-3xl font-display font-bold gold-text">{s.k}</div>
+              <div className="text-muted-foreground uppercase tracking-[0.2em] mt-1">{s.v}</div>
             </div>
           ))}
         </div>
