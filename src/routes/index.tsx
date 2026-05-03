@@ -30,37 +30,37 @@ function Hero() {
 
 
 
-      <div className="relative container-pro pb-20 pt-32">
+      <div className="relative container-pro pb-20 pt-32 text-text-hero">
         <div className="max-w-3xl animate-fade-up">
-          <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-hero-label mb-6 flex items-center gap-3">
-            <span className="h-px w-8 bg-hero-rule" />
+          <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-text-hero-muted mb-6 flex items-center gap-3">
+            <span className="h-px w-8 bg-text-hero-muted" />
             Est. 2005 · Stone Town, Zanzibar
           </div>
-          <h1 className="font-display text-5xl md:text-7xl lg:text-[8.5rem] leading-[0.98] tracking-[-0.03em] text-hero-headline">
-            Tanzania, told<br />by the people who <em className="italic font-light text-hero-accent">live</em> it.
+          <h1 className="font-display text-5xl md:text-7xl lg:text-[8.5rem] leading-[0.98] tracking-[-0.03em]">
+            Tanzania, told<br />by the people who <em className="italic font-light text-text-hero-secondary">live</em> it.
           </h1>
-          <p className="mt-8 text-base md:text-lg text-hero-body max-w-xl leading-relaxed">
+          <p className="mt-8 text-base md:text-lg text-text-hero-secondary max-w-xl leading-relaxed">
             Tailor-made safaris in the Serengeti and slow-travel escapes across Zanzibar — designed and guided by a local team of forty.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-5">
-            <Link to="/contact" className="group inline-flex items-center gap-2 bg-hero-headline text-foreground font-medium px-7 py-3.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+            <Link to="/contact" className="group inline-flex items-center gap-2 bg-text-hero text-foreground font-medium px-7 py-3.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
               Plan my trip
               <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
             </Link>
-            <Link to="/safaris" className="inline-flex items-center gap-2 text-hero-body font-medium quiet-link">
+            <Link to="/safaris" className="inline-flex items-center gap-2 text-text-hero-secondary font-medium quiet-link">
               Browse safaris →
             </Link>
           </div>
 
-          <div className="mt-14 grid grid-cols-3 gap-8 max-w-lg pt-8 border-t border-hero-rule/40">
+          <div className="mt-14 grid grid-cols-3 gap-8 max-w-lg pt-8 border-t border-text-hero-muted/30">
             {[
               { k: "12.4k", v: "Travelers" },
               { k: "4.97", v: "Rating" },
               { k: "20", v: "Years" },
             ].map((s) => (
               <div key={s.v}>
-                <div className="font-display text-2xl md:text-3xl tnum text-hero-headline">{s.k}</div>
-                <div className="text-[10px] uppercase tracking-[0.22em] text-hero-label mt-1 font-mono">{s.v}</div>
+                <div className="font-display text-2xl md:text-3xl tnum">{s.k}</div>
+                <div className="text-[10px] uppercase tracking-[0.22em] text-text-hero-muted mt-1 font-mono">{s.v}</div>
               </div>
             ))}
           </div>

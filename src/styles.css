@@ -40,11 +40,6 @@
   --color-text-hero: var(--text-hero);
   --color-text-hero-secondary: var(--text-hero-secondary);
   --color-text-hero-muted: var(--text-hero-muted);
-  --color-hero-headline: var(--hero-headline);
-  --color-hero-accent: var(--hero-accent);
-  --color-hero-body: var(--hero-body);
-  --color-hero-label: var(--hero-label);
-  --color-hero-rule: var(--hero-rule);
 
   --font-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
@@ -90,13 +85,6 @@
   --text-hero: oklch(0.98 0.008 80);        /* text on dark/image backgrounds */
   --text-hero-secondary: oklch(0.92 0.007 80); /* secondary text on dark backgrounds */
   --text-hero-muted: oklch(0.72 0.006 80);  /* muted text on dark backgrounds */
-
-  /* Hero vivid palette — golden-hour safari warmth */
-  --hero-headline: oklch(0.88 0.12 78);     /* warm amber gold — Serengeti horizon */
-  --hero-accent: oklch(0.76 0.14 38);       /* lit terracotta — brand primary brightened */
-  --hero-body: oklch(0.87 0.05 74);         /* warm sand — softer, readable body */
-  --hero-label: oklch(0.68 0.07 70);        /* muted amber — eyebrow & stat labels */
-  --hero-rule: oklch(0.58 0.06 68);         /* hairline rule & border — deeper amber */
 }
 
 .dark {
