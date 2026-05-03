@@ -150,6 +150,9 @@
   }
   .animate-marquee { animation: marquee 40s linear infinite; }
 
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { scrollbar-width: none; }
+
   .underline-link {
     position: relative;
   }
