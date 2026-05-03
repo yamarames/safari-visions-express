@@ -33,7 +33,7 @@ function About() {
           <h1 className="font-display text-5xl md:text-7xl leading-[1.05]">
             Born in Stone Town. <em className="italic font-light">Built on trust.</em>
           </h1>
-          <p className="mt-8 text-lg text-muted-foreground leading-relaxed max-w-2xl">
+          <p className="mt-8 text-lg text-text-secondary leading-relaxed max-w-2xl">
             Zanzafari started in 2005 as a single wooden dhow captained by our founder Hassan. Two decades on, we are a family of forty — guides, drivers, curators and chefs — dedicated to giving every traveler the most honest, immersive view of East Africa.
           </p>
         </div>
@@ -59,7 +59,7 @@ function About() {
             <div key={v} className="bg-background p-6">
               <Icon size={20} className="text-primary mb-4" strokeWidth={1.5} />
               <div className="font-display text-3xl">{k}</div>
-              <div className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{v}</div>
+              <div className="mt-1 text-xs uppercase tracking-wider text-text-tertiary">{v}</div>
             </div>
           ))}
         </div>
@@ -72,7 +72,7 @@ function About() {
         <div>
           <div className="eyebrow mb-4">What we believe</div>
           <h2 className="font-display text-4xl md:text-5xl leading-tight">Travel should leave a place better than it found it.</h2>
-          <p className="mt-6 text-muted-foreground leading-relaxed">
+          <p className="mt-6 text-text-secondary leading-relaxed">
             Five percent of every booking goes directly to community projects: school fees in Paje, a women-run weaving cooperative in Jambiani, and reef restoration off Mnemba. We publish our impact report every year.
           </p>
         </div>

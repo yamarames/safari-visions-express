@@ -14,16 +14,16 @@ export function TopBar() {
         </button>
         {pathname === "/" && (
           <div className="hidden md:flex items-center gap-2 ml-2 bg-surface-elevated rounded-full pl-4 pr-2 py-2 w-80 ring-1 ring-transparent focus-within:ring-primary/60 transition">
-            <Search size={16} className="text-muted-foreground" />
+            <Search size={16} className="text-text-tertiary" />
             <input
               placeholder="Search tours, beaches, parks…"
-              className="bg-transparent flex-1 text-sm outline-none placeholder:text-muted-foreground"
+              className="bg-transparent flex-1 text-sm outline-none placeholder:text-text-tertiary"
             />
           </div>
         )}
       </div>
       <div className="flex items-center gap-3">
-        <Link to="/tours" className="hidden sm:inline px-4 py-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition">
+        <Link to="/tours" className="hidden sm:inline px-4 py-2 text-sm font-semibold text-text-tertiary hover:text-foreground transition">
           Explore
         </Link>
         <Link

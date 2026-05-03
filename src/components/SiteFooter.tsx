@@ -10,10 +10,10 @@ export function SiteFooter() {
             <span className="h-8 w-8 rounded-full bg-primary grid place-items-center text-primary-foreground font-display text-sm">Z</span>
             <span className="font-display text-2xl">Zanzafari</span>
           </Link>
-          <p className="mt-5 max-w-md text-sm text-muted-foreground leading-relaxed">
+          <p className="mt-5 max-w-md text-sm text-text-secondary leading-relaxed">
             Locally owned tour operator crafting honest, immersive Tanzania safaris and Zanzibar island experiences since 2005.
           </p>
-          <div className="mt-6 flex items-center gap-5 text-sm text-muted-foreground">
+          <div className="mt-6 flex items-center gap-5 text-sm text-text-tertiary">
             <a href="mailto:hello@zanzafari.co" className="flex items-center gap-2 hover:text-foreground"><Mail size={15} /> hello@zanzafari.co</a>
             <a href="tel:+255777000111" className="flex items-center gap-2 hover:text-foreground"><Phone size={15} /> +255 777 000 111</a>
           </div>
@@ -31,7 +31,7 @@ export function SiteFooter() {
 
         <div>
           <div className="eyebrow mb-4">Visit</div>
-          <p className="text-sm text-muted-foreground flex items-start gap-2">
+          <p className="text-sm text-text-secondary flex items-start gap-2">
             <MapPin size={15} className="mt-0.5 shrink-0" />
             Shangani Street, Stone Town, Zanzibar, Tanzania
           </p>
@@ -41,8 +41,8 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="border-t border-border">
-        <div className="container-pro py-6 flex flex-col md:flex-row gap-2 items-start md:items-center justify-between text-xs text-muted-foreground">
+        <div className="border-t border-border">
+        <div className="container-pro py-6 flex flex-col md:flex-row gap-2 items-start md:items-center justify-between text-xs text-text-tertiary">
           <span>© {new Date().getFullYear()} Zanzafari Tours & Safaris. All rights reserved.</span>
           <span className="font-mono">EAST AFRICA · LICENSED OPERATOR</span>
         </div>

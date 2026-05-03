@@ -30,29 +30,29 @@ function Hero() {
 
 
 
-      <div className="relative container-pro pb-20 pt-32 text-white">
+      <div className="relative container-pro pb-20 pt-32 text-text-hero">
         <div className="max-w-3xl animate-fade-up">
-          <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/80 mb-6 flex items-center gap-3">
-            <span className="h-px w-8 bg-white/60" />
+          <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-text-hero-muted mb-6 flex items-center gap-3">
+            <span className="h-px w-8 bg-text-hero-muted" />
             Est. 2005 · Stone Town, Zanzibar
           </div>
           <h1 className="font-display text-5xl md:text-7xl lg:text-[8.5rem] leading-[0.98] tracking-[-0.03em]">
-            Tanzania, told<br />by the people who <em className="italic font-light text-white/90">live</em> it.
+            Tanzania, told<br />by the people who <em className="italic font-light text-text-hero-secondary">live</em> it.
           </h1>
-          <p className="mt-8 text-base md:text-lg text-white/85 max-w-xl leading-relaxed">
+          <p className="mt-8 text-base md:text-lg text-text-hero-secondary max-w-xl leading-relaxed">
             Tailor-made safaris in the Serengeti and slow-travel escapes across Zanzibar — designed and guided by a local team of forty.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-5">
-            <Link to="/contact" className="group inline-flex items-center gap-2 bg-white text-foreground font-medium px-7 py-3.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+            <Link to="/contact" className="group inline-flex items-center gap-2 bg-text-hero text-foreground font-medium px-7 py-3.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
               Plan my trip
               <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
             </Link>
-            <Link to="/safaris" className="inline-flex items-center gap-2 text-white/90 font-medium quiet-link">
+            <Link to="/safaris" className="inline-flex items-center gap-2 text-text-hero-secondary font-medium quiet-link">
               Browse safaris →
             </Link>
           </div>
 
-          <div className="mt-14 grid grid-cols-3 gap-8 max-w-lg pt-8 border-t border-white/15">
+          <div className="mt-14 grid grid-cols-3 gap-8 max-w-lg pt-8 border-t border-text-hero-muted/30">
             {[
               { k: "12.4k", v: "Travelers" },
               { k: "4.97", v: "Rating" },
@@ -60,7 +60,7 @@ function Hero() {
             ].map((s) => (
               <div key={s.v}>
                 <div className="font-display text-2xl md:text-3xl tnum">{s.k}</div>
-                <div className="text-[10px] uppercase tracking-[0.22em] text-white/60 mt-1 font-mono">{s.v}</div>
+                <div className="text-[10px] uppercase tracking-[0.22em] text-text-hero-muted mt-1 font-mono">{s.v}</div>
               </div>
             ))}
           </div>
@@ -104,7 +104,7 @@ function ValueProps() {
     <section className="container-pro py-24 md:py-32">
       <div className="max-w-2xl mb-16">
         <div className="eyebrow mb-4 flex items-center gap-3"><span className="h-px w-6 bg-muted-foreground/60" />Why Zanzafari</div>
-        <h2 className="font-display text-4xl md:text-6xl leading-[1.05]">Not a booking platform.<br /><em className="italic font-light text-muted-foreground">A small team that knows every road.</em></h2>
+        <h2 className="font-display text-4xl md:text-6xl leading-[1.05]">Not a booking platform.<br /><em className="italic font-light text-text-secondary">A small team that knows every road.</em></h2>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
         {props.map(({ idx, icon: Icon, title, text }) => (
@@ -114,7 +114,7 @@ function ValueProps() {
               <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground tnum">N° {idx}</span>
             </div>
             <h3 className="font-display text-xl mb-3">{title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+            <p className="text-sm text-text-secondary leading-relaxed">{text}</p>
           </div>
         ))}
       </div>
@@ -196,16 +196,16 @@ function CTA() {
         <span className="h-px w-8 bg-muted-foreground/50" />
       </div>
       <h2 className="font-display text-5xl md:text-7xl max-w-3xl mx-auto leading-[1.02]">
-        Tell us your dates.<br /><em className="italic font-light text-muted-foreground">We'll design the trip.</em>
+        Tell us your dates.<br /><em className="italic font-light text-text-secondary">We'll design the trip.</em>
       </h2>
-      <p className="mt-7 text-muted-foreground max-w-xl mx-auto leading-relaxed">
+      <p className="mt-7 text-text-secondary max-w-xl mx-auto leading-relaxed">
         No call centers, no upsells. A real planner replies within one business day with a custom proposal.
       </p>
       <Link to="/contact" className="group mt-12 inline-flex items-center gap-2 bg-foreground text-background font-medium px-9 py-4 rounded-full hover:bg-primary transition-colors">
         Request a proposal
         <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
       </Link>
-      <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+      <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary">
         Free · No obligation · Reply within 24h
       </div>
     </section>

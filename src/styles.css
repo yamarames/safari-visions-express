@@ -34,6 +34,12 @@
   --color-surface: var(--surface);
   --color-ink: var(--ink);
   --color-clay: var(--clay);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-interactive: var(--text-interactive);
+  --color-text-hero: var(--text-hero);
+  --color-text-hero-secondary: var(--text-hero-secondary);
+  --color-text-hero-muted: var(--text-hero-muted);
 
   --font-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
@@ -62,7 +68,7 @@
   --secondary: oklch(0.94 0.01 80);
   --secondary-foreground: oklch(0.18 0.01 60);
   --muted: oklch(0.95 0.008 80);
-  --muted-foreground: oklch(0.45 0.01 60);
+  --muted-foreground: oklch(0.52 0.01 60);   /* improved from 0.45 for better contrast */
   --accent: oklch(0.92 0.04 80);
   --accent-foreground: oklch(0.18 0.01 60);
 
@@ -71,6 +77,14 @@
   --border: oklch(0.88 0.01 70);
   --input: oklch(0.92 0.008 70);
   --ring: oklch(0.55 0.14 38);
+
+  /* Enhanced semantic text tokens for polished typography */
+  --text-secondary: oklch(0.52 0.01 60);    /* secondary body text with better contrast */
+  --text-tertiary: oklch(0.62 0.008 60);    /* light supportive text, labels */
+  --text-interactive: oklch(0.48 0.012 38); /* links and interactive elements */
+  --text-hero: oklch(0.98 0.008 80);        /* text on dark/image backgrounds */
+  --text-hero-secondary: oklch(0.92 0.007 80); /* secondary text on dark backgrounds */
+  --text-hero-muted: oklch(0.72 0.006 80);  /* muted text on dark backgrounds */
 }
 
 .dark {
@@ -122,7 +136,7 @@
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.22em;
-    color: var(--color-muted-foreground);
+    color: var(--color-text-tertiary);
   }
 
   .hairline {
@@ -212,7 +226,7 @@
   .section-index {
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    color: var(--color-muted-foreground);
+    color: var(--color-text-tertiary);
     letter-spacing: 0.18em;
   }
 
@@ -262,6 +276,6 @@
   .dot::before {
     content: "·";
     margin: 0 0.6rem;
-    color: var(--color-muted-foreground);
+    color: var(--color-text-tertiary);
   }
 }

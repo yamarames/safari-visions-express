@@ -7,9 +7,9 @@ export function ContentRow({ title, subtitle, items }: { title: string; subtitle
       <div className="flex items-end justify-between mb-6">
         <div>
           <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight">{title}</h2>
-          {subtitle && <p className="text-sm text-muted-foreground mt-1.5 font-medium">{subtitle}</p>}
+          {subtitle && <p className="text-sm text-text-secondary mt-1.5 font-medium">{subtitle}</p>}
         </div>
-        <button className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground hover:gold-text flex items-center gap-1 transition group">
+        <button className="text-[11px] font-bold uppercase tracking-[0.2em] text-text-tertiary hover:gold-text flex items-center gap-1 transition group">
           Show all <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
         </button>
       </div>

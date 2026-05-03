@@ -42,10 +42,10 @@ export function Card3D({ tour }: { tour: TourCard }) {
         )}
 
         <div className="lift absolute bottom-3 left-3 right-3 flex items-end justify-between">
-          <div className="flex items-center gap-1 text-[11px] font-medium text-white/90">
+          <div className="flex items-center gap-1 text-[11px] font-medium text-text-hero-secondary">
             <Star size={12} className="fill-current" style={{ color: "oklch(0.84 0.13 85)" }} />
             <span>4.9</span>
-            <span className="text-white/50">· 280+ guests</span>
+            <span className="text-text-hero-muted">· 280+ guests</span>
           </div>
           <button
             className="h-12 w-12 rounded-full bg-primary text-primary-foreground grid place-items-center opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
@@ -61,7 +61,7 @@ export function Card3D({ tour }: { tour: TourCard }) {
         <h3 className="font-display text-lg font-semibold tracking-tight truncate group-hover:gradient-text transition-all">
           {tour.title}
         </h3>
-        <p className="text-[13px] text-muted-foreground line-clamp-2 mt-1 leading-relaxed">{tour.subtitle}</p>
+        <p className="text-[13px] text-text-secondary line-clamp-2 mt-1 leading-relaxed">{tour.subtitle}</p>
       </div>
     </Link>
   );

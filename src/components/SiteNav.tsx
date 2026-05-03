@@ -50,7 +50,7 @@ export function SiteNav() {
           scrolled ? "max-h-0 opacity-0" : "max-h-10 opacity-100"
         }`}
       >
-        <div className="container-pro h-8 flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.24em] text-white/65 border-b border-white/10">
+        <div className="container-pro h-8 flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.24em] text-text-hero-muted border-b border-text-hero-muted/20">
           <span className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
             On the ground · Stone Town, ZNZ
@@ -71,12 +71,12 @@ export function SiteNav() {
         {/* Corner ticks on the header itself */}
         <span
           className={`pointer-events-none absolute top-2 left-1 h-2.5 w-2.5 border-l border-t transition-colors ${
-            scrolled ? "border-foreground/30" : "border-white/40"
+            scrolled ? "border-foreground/30" : "border-text-hero-muted/40"
           }`}
         />
         <span
           className={`pointer-events-none absolute top-2 right-1 h-2.5 w-2.5 border-r border-t transition-colors ${
-            scrolled ? "border-foreground/30" : "border-white/40"
+            scrolled ? "border-foreground/30" : "border-text-hero-muted/40"
           }`}
         />
 
@@ -84,7 +84,7 @@ export function SiteNav() {
         <Link
           to="/"
           className={`group flex items-center gap-2.5 transition-colors ${
-            scrolled ? "text-foreground" : "text-white"
+            scrolled ? "text-foreground" : "text-text-hero"
           }`}
         >
           <span className="relative h-9 w-9 rounded-full bg-primary grid place-items-center text-primary-foreground font-display text-[15px] shadow-sm transition-transform duration-500 group-hover:rotate-[18deg]">
@@ -102,7 +102,7 @@ export function SiteNav() {
         {/* Desktop nav */}
         <nav
           className={`hidden md:flex items-center gap-1 transition-colors ${
-            scrolled ? "text-foreground/85" : "text-white/85"
+            scrolled ? "text-foreground/85" : "text-text-hero-secondary"
           }`}
         >
           {links.slice(1, -1).map((l) => (
@@ -128,7 +128,7 @@ export function SiteNav() {
           <a
             href="tel:+255777000111"
             className={`text-sm font-mono tracking-wider tnum hidden lg:inline-flex items-center gap-2 transition-colors ${
-              scrolled ? "text-foreground/70 hover:text-primary" : "text-white/75 hover:text-white"
+              scrolled ? "text-foreground/70 hover:text-primary" : "text-text-hero-muted hover:text-text-hero"
             }`}
           >
             <span className="h-1 w-1 rounded-full bg-primary" />
@@ -139,7 +139,7 @@ export function SiteNav() {
             className={`group relative inline-flex items-center gap-2 text-sm font-medium pl-5 pr-4 py-2.5 rounded-full overflow-hidden transition-all ${
               scrolled
                 ? "bg-foreground text-background hover:bg-primary"
-                : "bg-white text-foreground hover:bg-primary hover:text-primary-foreground"
+                : "bg-text-hero text-foreground hover:bg-primary hover:text-primary-foreground"
             }`}
           >
             <span>Plan my trip</span>
@@ -160,7 +160,7 @@ export function SiteNav() {
         <button
           onClick={() => setOpen((o) => !o)}
           className={`md:hidden p-2 -mr-2 transition-colors ${
-            scrolled ? "text-foreground" : "text-white"
+            scrolled ? "text-foreground" : "text-text-hero"
           }`}
           aria-label="Toggle menu"
         >
@@ -180,12 +180,12 @@ export function SiteNav() {
                 className="group flex items-center justify-between py-4 border-b border-border last:border-b-0"
               >
                 <span className="flex items-center gap-4">
-                  <span className="font-mono text-[10px] tracking-[0.22em] text-muted-foreground tnum">
+                  <span className="font-mono text-[10px] tracking-[0.22em] text-text-tertiary tnum">
                     {l.idx}
                   </span>
                   <span className="font-display text-2xl">{l.label}</span>
                 </span>
-                <ArrowUpRight size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                <ArrowUpRight size={18} className="text-text-tertiary group-hover:text-primary transition-colors" />
               </Link>
             ))}
             <Link
@@ -195,7 +195,7 @@ export function SiteNav() {
             >
               Plan my trip
             </Link>
-            <div className="mt-6 flex justify-between font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+            <div className="mt-6 flex justify-between font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary">
               <span>{time}</span>
               <span>+255 777 000 111</span>
             </div>

@@ -25,7 +25,7 @@ function Contact() {
           <h1 className="font-display text-5xl md:text-7xl leading-[1.05]">
             Tell us your dates. <em className="italic font-light">We'll design the trip.</em>
           </h1>
-          <p className="mt-7 text-lg text-muted-foreground max-w-2xl">
+          <p className="mt-7 text-lg text-text-secondary max-w-2xl">
             A real Tanzanian planner replies within one business day with a custom proposal — no call center, no upsell, no obligation.
           </p>
         </div>
@@ -64,7 +64,7 @@ function Contact() {
             const Inner = (
               <>
                 <Icon size={18} className="text-primary mb-4" strokeWidth={1.5} />
-                <div className="text-xs uppercase tracking-wider text-muted-foreground">{k}</div>
+                <div className="text-xs uppercase tracking-wider text-text-tertiary">{k}</div>
                 <div className="font-display text-xl mt-1">{v}</div>
               </>
             );
@@ -80,7 +80,7 @@ function Contact() {
   );
 }
 
-const inputCls = "w-full bg-transparent border-b border-border px-0 py-3 outline-none focus:border-primary placeholder:text-muted-foreground/60 transition-colors";
+const inputCls = "w-full bg-transparent border-b border-border px-0 py-3 outline-none focus:border-primary placeholder:text-text-tertiary transition-colors";
 
 function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (

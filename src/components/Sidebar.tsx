@@ -40,7 +40,7 @@ export function Sidebar() {
                 key={n.to}
                 to={n.to}
                 className={`flex items-center gap-4 px-3 py-2.5 rounded-md text-sm font-semibold transition-colors ${
-                  active ? "text-foreground bg-surface-elevated" : "text-muted-foreground hover:text-foreground"
+                  active ? "text-foreground bg-surface-elevated" : "text-text-tertiary hover:text-foreground"
                 }`}
               >
                 <Icon size={20} />
@@ -53,17 +53,17 @@ export function Sidebar() {
 
       <div className="bg-sidebar rounded-xl p-5 flex-1 overflow-hidden flex flex-col">
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3 text-muted-foreground font-semibold text-sm">
+          <div className="flex items-center gap-3 text-text-tertiary font-semibold text-sm">
             <Library size={20} />
             Your Wishlist
           </div>
-          <button className="h-8 w-8 grid place-items-center rounded-full hover:bg-surface-elevated text-muted-foreground hover:text-foreground transition">
+          <button className="h-8 w-8 grid place-items-center rounded-full hover:bg-surface-elevated text-text-tertiary hover:text-foreground transition">
             <Plus size={18} />
           </button>
         </div>
         <div className="flex gap-2 flex-wrap mb-4">
           <span className="px-3 py-1.5 bg-surface-elevated rounded-full text-xs font-semibold">Tours</span>
-          <span className="px-3 py-1.5 bg-surface-elevated/60 rounded-full text-xs font-semibold text-muted-foreground">Beaches</span>
+          <span className="px-3 py-1.5 bg-surface-elevated/60 rounded-full text-xs font-semibold text-text-tertiary">Beaches</span>
         </div>
         <div className="overflow-y-auto scrollbar-hide flex flex-col gap-1 -mx-2 px-2">
           {playlists.map((p, i) => (
@@ -79,7 +79,7 @@ export function Sidebar() {
               />
               <div className="min-w-0">
                 <div className="font-semibold text-sm truncate group-hover:text-primary transition">{p}</div>
-                <div className="text-xs text-muted-foreground flex items-center gap-1">
+                <div className="text-xs text-text-tertiary flex items-center gap-1">
                   <Heart size={10} /> Curated · Zanzibar
                 </div>
               </div>

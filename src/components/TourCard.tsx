@@ -37,7 +37,7 @@ export function TourCard({ tour }: { tour: Tour }) {
       </div>
 
       <div className="pt-5">
-        <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground mb-2">
+        <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.2em] text-text-tertiary mb-2">
           {tour.location ? (
             <span className="flex items-center gap-1.5"><MapPin size={10} /> {tour.location}</span>
           ) : <span />}
@@ -53,7 +53,7 @@ export function TourCard({ tour }: { tour: Tour }) {
             className="shrink-0 mt-1.5 text-foreground/40 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"
           />
         </div>
-        <p className="text-[13px] text-muted-foreground mt-2 line-clamp-2 leading-relaxed">
+        <p className="text-[13px] text-text-secondary mt-2 line-clamp-2 leading-relaxed">
           {tour.subtitle}
         </p>
       </div>

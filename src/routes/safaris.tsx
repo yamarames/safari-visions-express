@@ -23,8 +23,8 @@ function Safaris() {
       <section className="relative h-[70vh] min-h-[480px] flex items-end overflow-hidden">
         <img src={lion} alt="Lion in Serengeti" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/30" />
-        <div className="relative container-pro pb-16 pt-28 text-white">
-          <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/80 mb-5">Tanzania · Northern & Southern Circuits</div>
+        <div className="relative container-pro pb-16 pt-28 text-text-hero">
+          <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-text-hero-muted mb-5">Tanzania · Northern & Southern Circuits</div>
           <h1 className="font-display text-5xl md:text-7xl max-w-3xl leading-[1.05]">Safaris built around the wildlife — not the schedule.</h1>
         </div>
       </section>
@@ -33,7 +33,7 @@ function Safaris() {
         <div className="max-w-2xl mb-14">
           <div className="eyebrow mb-3">Signature safaris</div>
           <h2 className="font-display text-4xl md:text-5xl">Hand-picked itineraries.</h2>
-          <p className="mt-4 text-muted-foreground">Each route is fully customizable — durations, lodges and pace adjusted to your group.</p>
+          <p className="mt-4 text-text-secondary">Each route is fully customizable — durations, lodges and pace adjusted to your group.</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
           {featuredSafaris.map((t) => <TourCard key={t.slug} tour={t} />)}
