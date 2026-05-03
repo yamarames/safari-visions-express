@@ -85,17 +85,23 @@
     background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body);
+    font-feature-settings: "ss01", "cv11", "cv02", "kern", "liga";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
+  ::selection { background: var(--color-primary); color: var(--color-primary-foreground); }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.022em;
     font-weight: 500;
     color: var(--color-ink);
+    font-feature-settings: "ss01", "ss02", "kern", "liga", "dlig";
+    font-variation-settings: "opsz" 144;
   }
-  h1 { font-weight: 400; }
+  h1 { font-weight: 400; font-variation-settings: "opsz" 144; }
+  p { text-wrap: pretty; }
+  h1, h2, h3 { text-wrap: balance; }
 }
 
 @layer utilities {
@@ -170,5 +176,92 @@
   .underline-link:hover::after {
     transform: scaleX(1);
     transform-origin: left;
+  }
+
+  /* Subtle paper grain — adds depth without noise */
+  .paper-grain {
+    position: relative;
+  }
+  .paper-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* Numerals */
+  .tnum { font-variant-numeric: tabular-nums; }
+  .onum { font-variant-numeric: oldstyle-nums; }
+
+  /* Drop cap for editorial paragraphs */
+  .dropcap::first-letter {
+    font-family: var(--font-display);
+    float: left;
+    font-size: 4.5rem;
+    line-height: 0.85;
+    padding: 0.35rem 0.6rem 0 0;
+    color: var(--color-primary);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* Section index numerals */
+  .section-index {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.18em;
+  }
+
+  /* Image overlay corner ticks (macro detail) */
+  .corner-ticks {
+    position: relative;
+  }
+  .corner-ticks::before,
+  .corner-ticks::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: rgba(255,255,255,0.65);
+    border-style: solid;
+    border-width: 0;
+    pointer-events: none;
+    transition: width 0.5s, height 0.5s;
+  }
+  .corner-ticks::before {
+    top: 10px; left: 10px;
+    border-top-width: 1px;
+    border-left-width: 1px;
+  }
+  .corner-ticks::after {
+    bottom: 10px; right: 10px;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
+  }
+  .corner-ticks:hover::before,
+  .corner-ticks:hover::after {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Quiet hover-rule under links */
+  .quiet-link {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .quiet-link:hover { background-size: 100% 1px; }
+
+  /* Marquee separator dot */
+  .dot::before {
+    content: "·";
+    margin: 0 0.6rem;
+    color: var(--color-muted-foreground);
   }
 }
