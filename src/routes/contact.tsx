@@ -1,13 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AppShell } from "@/components/AppShell";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { SiteShell } from "@/components/SiteShell";
+import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Book a Trip — Zanzafari" },
-      { name: "description", content: "Reach out to plan your custom Zanzibar tour or Tanzania safari." },
+      { title: "Plan a Trip — Zanzafari" },
+      { name: "description", content: "Tell us your dates and dream trip. A real planner replies within one business day with a custom proposal." },
+      { property: "og:title", content: "Plan a Trip — Zanzafari" },
+      { property: "og:description", content: "Tell us your dates. We'll design the trip." },
     ],
   }),
   component: Contact,
@@ -16,52 +18,75 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   const [sent, setSent] = useState(false);
   return (
-    <AppShell>
-      <div className="px-6 md:px-12 pt-14 pb-8" style={{ background: "var(--gradient-sunset)" }}>
-        <span className="text-xs font-bold uppercase tracking-widest opacity-90 text-background">Let's plan</span>
-        <h1 className="text-5xl md:text-7xl font-display font-black mt-2 text-background">Book your trip.</h1>
-      </div>
+    <SiteShell>
+      <section className="container-pro pt-36 md:pt-44 pb-16">
+        <div className="max-w-3xl">
+          <div className="eyebrow mb-5">Plan a trip</div>
+          <h1 className="font-display text-5xl md:text-7xl leading-[1.05]">
+            Tell us your dates. <em className="italic font-light">We'll design the trip.</em>
+          </h1>
+          <p className="mt-7 text-lg text-muted-foreground max-w-2xl">
+            A real Tanzanian planner replies within one business day with a custom proposal — no call center, no upsell, no obligation.
+          </p>
+        </div>
+      </section>
 
-      <section className="px-6 md:px-12 py-12 grid md:grid-cols-5 gap-10">
+      <section className="container-pro pb-32 grid md:grid-cols-12 gap-12">
         <form
           onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-          className="md:col-span-3 grid gap-4 p-8 rounded-2xl bg-surface"
-          style={{ background: "var(--gradient-card)", boxShadow: "var(--shadow-card)" }}
+          className="md:col-span-7 grid gap-5"
         >
-          <div className="grid sm:grid-cols-2 gap-4">
-            <input required placeholder="Your name" className="bg-input/50 px-4 py-3 rounded-lg outline-none focus:ring-2 ring-primary" />
-            <input required type="email" placeholder="Email" className="bg-input/50 px-4 py-3 rounded-lg outline-none focus:ring-2 ring-primary" />
+          <div className="grid sm:grid-cols-2 gap-5">
+            <Field label="Your name" required><input required className={inputCls} placeholder="Jane Doe" /></Field>
+            <Field label="Email" required><input required type="email" className={inputCls} placeholder="you@email.com" /></Field>
           </div>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <input placeholder="Travel dates" className="bg-input/50 px-4 py-3 rounded-lg outline-none focus:ring-2 ring-primary" />
-            <input placeholder="Group size" className="bg-input/50 px-4 py-3 rounded-lg outline-none focus:ring-2 ring-primary" />
+          <div className="grid sm:grid-cols-2 gap-5">
+            <Field label="Travel dates"><input className={inputCls} placeholder="Sep 12 – Sep 24" /></Field>
+            <Field label="Group size"><input className={inputCls} placeholder="2 adults" /></Field>
           </div>
-          <textarea rows={5} placeholder="Tell us about your dream trip…" className="bg-input/50 px-4 py-3 rounded-lg outline-none focus:ring-2 ring-primary" />
+          <Field label="Tell us about your dream trip">
+            <textarea rows={6} className={inputCls} placeholder="A week of safari followed by quiet beach time, mid-range lodges, no early starts…" />
+          </Field>
           <button
             type="submit"
-            className="self-start flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition pulse-glow"
+            className="self-start inline-flex items-center gap-2 bg-foreground text-background font-medium px-7 py-3.5 rounded-full hover:bg-primary transition-colors"
           >
-            <Send size={16} /> {sent ? "Sent — asante!" : "Send inquiry"}
+            {sent ? "Sent — asante!" : (<>Send inquiry <ArrowRight size={16} /></>)}
           </button>
         </form>
 
-        <aside className="md:col-span-2 grid gap-4">
+        <aside className="md:col-span-5 space-y-px bg-border">
           {[
-            { icon: MapPin, k: "Visit us", v: "Shangani St, Stone Town, Zanzibar" },
-            { icon: Phone, k: "WhatsApp", v: "+255 777 000 111" },
-            { icon: Mail, k: "Email", v: "hello@zanzafari.co" },
-          ].map(({ icon: Icon, k, v }) => (
-            <div key={k} className="card-tilt p-6 rounded-xl flex gap-4 items-start" style={{ background: "var(--gradient-card)" }}>
-              <div className="h-11 w-11 grid place-items-center rounded-full bg-primary/15 text-primary shrink-0"><Icon size={20} /></div>
-              <div>
+            { icon: MapPin, k: "Visit us", v: "Shangani Street, Stone Town, Zanzibar", href: undefined },
+            { icon: Phone, k: "WhatsApp", v: "+255 777 000 111", href: "https://wa.me/255777000111" },
+            { icon: Mail, k: "Email", v: "hello@zanzafari.co", href: "mailto:hello@zanzafari.co" },
+          ].map(({ icon: Icon, k, v, href }) => {
+            const Inner = (
+              <>
+                <Icon size={18} className="text-primary mb-4" strokeWidth={1.5} />
                 <div className="text-xs uppercase tracking-wider text-muted-foreground">{k}</div>
-                <div className="font-semibold mt-1">{v}</div>
-              </div>
-            </div>
-          ))}
+                <div className="font-display text-xl mt-1">{v}</div>
+              </>
+            );
+            return href ? (
+              <a key={k} href={href} className="block bg-background p-6 hover:bg-surface transition-colors">{Inner}</a>
+            ) : (
+              <div key={k} className="bg-background p-6">{Inner}</div>
+            );
+          })}
         </aside>
       </section>
-      <div className="h-20" />
-    </AppShell>
+    </SiteShell>
+  );
+}
+
+const inputCls = "w-full bg-transparent border-b border-border px-0 py-3 outline-none focus:border-primary placeholder:text-muted-foreground/60 transition-colors";
+
+function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
+  return (
+    <label className="block">
+      <span className="eyebrow block mb-2">{label}{required && " *"}</span>
+      {children}
+    </label>
   );
 }

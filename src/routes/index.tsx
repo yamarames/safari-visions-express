@@ -1,16 +1,16 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { AppShell } from "@/components/AppShell";
-import { ContentRow } from "@/components/ContentRow";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { SiteShell } from "@/components/SiteShell";
+import { TourCard } from "@/components/TourCard";
 import { featuredSafaris, islandEscapes, editorial, heroVideoUrl } from "@/data/tours";
-import { Play, Sparkles, MapPin } from "lucide-react";
+import { ArrowRight, Award, Compass, Leaf, ShieldCheck, Star } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Zanzafari — Zanzibar Tours & Tanzania Safaris" },
-      { name: "description", content: "Stream-worthy safaris and Zanzibar island escapes. Curated Big Five tours, beach getaways, and Stone Town adventures." },
-      { property: "og:title", content: "Zanzafari — Zanzibar Tours & Tanzania Safaris" },
-      { property: "og:description", content: "Curated safaris and Zanzibar island escapes." },
+      { title: "Zanzafari — Tanzania Safaris & Zanzibar Tours" },
+      { name: "description", content: "Locally owned tour operator. Tailor-made Tanzania safaris and Zanzibar island experiences crafted by guides who live here." },
+      { property: "og:title", content: "Zanzafari — Tanzania Safaris & Zanzibar Tours" },
+      { property: "og:description", content: "Tailor-made safaris and island escapes, crafted by guides who live here." },
     ],
   }),
   component: Home,
@@ -18,54 +18,124 @@ export const Route = createFileRoute("/")({
 
 function Hero() {
   return (
-    <section className="relative h-[82vh] min-h-[600px] -mt-[72px] overflow-hidden">
+    <section className="relative min-h-[100svh] flex items-end overflow-hidden">
       <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover animate-slow-zoom"
-        poster=""
+        autoPlay loop muted playsInline
+        className="absolute inset-0 h-full w-full object-cover"
       >
         <source src={heroVideoUrl} type="video/mp4" />
       </video>
-      <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/30 to-transparent" />
-      <div className="absolute inset-0 grain" />
-      <div
-        className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full opacity-25 blur-3xl pointer-events-none"
-        style={{ background: "var(--gradient-emerald-gold)" }}
-      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
 
-      <div className="relative h-full flex flex-col justify-end px-6 md:px-12 pb-20 max-w-3xl">
-        <div className="flex items-center gap-2 mb-5 text-[11px] font-bold uppercase tracking-[0.28em] gold-text animate-float">
-          <Sparkles size={14} style={{ color: "oklch(0.84 0.13 85)" }} /> Featured Journey
+      <div className="relative container-pro pb-20 pt-32 text-white">
+        <div className="max-w-3xl animate-fade-up">
+          <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/80 mb-6">
+            Est. 2005 · Stone Town, Zanzibar
+          </div>
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight">
+            Tanzania, told by the people who <em className="italic font-light">live</em> it.
+          </h1>
+          <p className="mt-7 text-base md:text-lg text-white/85 max-w-xl leading-relaxed">
+            Tailor-made safaris in the Serengeti and slow-travel escapes across Zanzibar — designed and guided by a local team of forty.
+          </p>
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-foreground font-medium px-7 py-3.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+              Plan my trip <ArrowRight size={16} />
+            </Link>
+            <Link to="/safaris" className="inline-flex items-center gap-2 text-white/90 font-medium px-2 py-3.5 underline-link">
+              Browse safaris
+            </Link>
+          </div>
         </div>
-        <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-black leading-[0.9] mb-6 animate-fade-up">
-          Tanzania,<br />
-          <span className="gradient-text italic font-medium">unscripted.</span>
-        </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8 leading-relaxed animate-fade-up" style={{ animationDelay: "0.15s" }}>
-          From the Serengeti's roaring sunrise to Zanzibar's turquoise dusk — press play on the trip of a lifetime.
-        </p>
-        <div className="flex items-center gap-3 flex-wrap animate-fade-up" style={{ animationDelay: "0.3s" }}>
-          <button className="flex items-center gap-2 bg-primary text-primary-foreground font-bold px-8 py-4 rounded-full hover:scale-105 active:scale-95 transition pulse-glow">
-            <Play size={18} fill="currentColor" /> Play Highlights
-          </button>
-          <button className="frame-gold flex items-center gap-2 glass-strong text-foreground font-semibold px-7 py-4 rounded-full hover:bg-background/60 transition">
-            <MapPin size={16} /> Plan my safari
-          </button>
-        </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="flex gap-8 md:gap-10 mt-12 text-xs animate-fade-up" style={{ animationDelay: "0.45s" }}>
+function TrustStrip() {
+  const items = ["Safari Bookings", "Lonely Planet", "Travel + Leisure", "National Geographic", "Condé Nast", "Tripadvisor"];
+  return (
+    <div className="border-y border-border bg-surface overflow-hidden">
+      <div className="container-pro py-6 flex items-center gap-3 md:gap-6 text-xs md:text-sm font-mono uppercase tracking-[0.2em] text-muted-foreground overflow-x-auto scrollbar-hide whitespace-nowrap">
+        <span className="shrink-0 text-foreground/70">As seen in</span>
+        {items.map((i) => (
+          <span key={i} className="shrink-0">· {i}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ValueProps() {
+  const props = [
+    { icon: Compass, title: "Locally crafted", text: "Every itinerary is built from scratch by guides who grew up on these routes." },
+    { icon: ShieldCheck, title: "Fully bonded", text: "Licensed Tanzanian operator with full traveler protection and 24/7 support on the ground." },
+    { icon: Leaf, title: "Low-impact", text: "We work only with eco-certified camps and reinvest 5% of every booking into community projects." },
+    { icon: Award, title: "20 years on safari", text: "From a single dhow in 2005 to 12,000+ travelers hosted across East Africa." },
+  ];
+  return (
+    <section className="container-pro py-24 md:py-32">
+      <div className="max-w-2xl mb-14">
+        <div className="eyebrow mb-4">Why Zanzafari</div>
+        <h2 className="font-display text-4xl md:text-5xl">Not a booking platform. A small team that knows every road.</h2>
+      </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        {props.map(({ icon: Icon, title, text }) => (
+          <div key={title}>
+            <Icon size={26} className="text-primary mb-5" strokeWidth={1.5} />
+            <h3 className="font-display text-xl mb-2">{title}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Section({ eyebrow, title, link, children }: { eyebrow: string; title: string; link?: { to: string; label: string }; children: React.ReactNode }) {
+  return (
+    <section className="container-pro py-20 md:py-28">
+      <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+        <div>
+          <div className="eyebrow mb-3">{eyebrow}</div>
+          <h2 className="font-display text-4xl md:text-5xl max-w-2xl">{title}</h2>
+        </div>
+        {link && (
+          <Link to={link.to} className="inline-flex items-center gap-2 text-sm font-medium underline-link">
+            {link.label} <ArrowRight size={15} />
+          </Link>
+        )}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+function Testimonial() {
+  return (
+    <section className="bg-surface border-y border-border">
+      <div className="container-pro py-24 md:py-32 grid md:grid-cols-12 gap-10 items-center">
+        <div className="md:col-span-7">
+          <div className="flex gap-1 mb-6 text-primary">
+            {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+          </div>
+          <blockquote className="font-display text-3xl md:text-4xl leading-snug">
+            "Hassan and his team turned a vague idea into the trip of our lives. We slept under canvas in the Serengeti, drifted on a dhow at sunset, and never once felt like tourists."
+          </blockquote>
+          <div className="mt-8 text-sm">
+            <div className="font-medium">Marta & Jens — Copenhagen</div>
+            <div className="text-muted-foreground">12-day Tanzania + Zanzibar honeymoon · March 2026</div>
+          </div>
+        </div>
+        <div className="md:col-span-5 grid grid-cols-3 gap-6 text-center">
           {[
-            { k: "12k+", v: "Travelers hosted" },
-            { k: "4.97", v: "Guest rating" },
-            { k: "20yr", v: "On the ground" },
+            { k: "12,400+", v: "travelers hosted" },
+            { k: "4.97", v: "guest rating" },
+            { k: "20", v: "years guiding" },
           ].map((s) => (
             <div key={s.v}>
-              <div className="text-3xl font-display font-bold gold-text">{s.k}</div>
-              <div className="text-muted-foreground uppercase tracking-[0.2em] mt-1">{s.v}</div>
+              <div className="font-display text-4xl md:text-5xl">{s.k}</div>
+              <div className="mt-2 text-xs uppercase tracking-wider text-muted-foreground">{s.v}</div>
             </div>
           ))}
         </div>
@@ -74,46 +144,55 @@ function Hero() {
   );
 }
 
-function GreetingChips() {
-  const chips = ["Big Five", "Beach Stays", "Stone Town", "Spice Tours", "Diving", "Honeymoon", "Family"];
+function CTA() {
   return (
-    <div className="px-6 mt-8">
-      <div className="flex items-end justify-between mb-4">
-        <h2 className="text-2xl font-bold">Karibu — pick a vibe</h2>
-      </div>
-      <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-2">
-        {chips.map((c, i) => (
-          <button
-            key={c}
-            className="shrink-0 px-5 py-2.5 rounded-full text-sm font-semibold border border-border hover:border-primary hover:text-primary transition card-tilt"
-            style={{
-              background: i === 0 ? "var(--gradient-jungle)" : "transparent",
-              color: i === 0 ? "white" : undefined,
-            }}
-          >
-            {c}
-          </button>
-        ))}
-      </div>
+    <section className="container-pro py-24 md:py-32 text-center">
+      <div className="eyebrow mb-5">Start planning</div>
+      <h2 className="font-display text-5xl md:text-6xl max-w-3xl mx-auto leading-tight">
+        Tell us your dates. We'll design the trip.
+      </h2>
+      <p className="mt-6 text-muted-foreground max-w-xl mx-auto">
+        No call centers, no upsells. A real planner replies within one business day with a custom proposal.
+      </p>
+      <Link to="/contact" className="mt-10 inline-flex items-center gap-2 bg-foreground text-background font-medium px-8 py-4 rounded-full hover:bg-primary transition-colors">
+        Request a proposal <ArrowRight size={16} />
+      </Link>
+    </section>
+  );
+}
+
+function Grid({ items }: { items: typeof featuredSafaris }) {
+  return (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+      {items.map((t) => <TourCard key={t.slug} tour={t} />)}
     </div>
   );
 }
 
 function Home() {
   return (
-    <AppShell>
+    <SiteShell>
       <Hero />
-      <GreetingChips />
-      <ContentRow title="Top Safaris this season" subtitle="Hand-picked by our local guides" items={featuredSafaris} />
-      <ContentRow title="Zanzibar Island Escapes" subtitle="From spice farms to turquoise reefs" items={islandEscapes} />
-      <ContentRow title="Editor's Picks" subtitle="Curated journeys for every traveler" items={editorial} />
+      <TrustStrip />
+      <ValueProps />
 
-      <footer className="mt-20 px-6 pb-10 text-xs text-muted-foreground">
-        <div className="border-t border-border pt-6 flex flex-wrap justify-between gap-4">
-          <span>© {new Date().getFullYear()} Zanzafari Tours & Safaris. Stone Town, Zanzibar.</span>
-          <span>Crafted with 🦁 in East Africa</span>
-        </div>
-      </footer>
-    </AppShell>
+      <Section eyebrow="Featured · Tanzania" title="Signature safaris this season." link={{ to: "/safaris", label: "All safaris" }}>
+        <Grid items={featuredSafaris} />
+      </Section>
+
+      <div className="hairline container-pro" />
+
+      <Section eyebrow="Featured · Zanzibar" title="Slow-travel island escapes." link={{ to: "/tours", label: "All tours" }}>
+        <Grid items={islandEscapes} />
+      </Section>
+
+      <Testimonial />
+
+      <Section eyebrow="Editor's picks" title="Curated journeys for every kind of traveler.">
+        <Grid items={editorial} />
+      </Section>
+
+      <CTA />
+    </SiteShell>
   );
 }
