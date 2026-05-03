@@ -7,32 +7,29 @@ import stoneTown from "@/assets/stone-town.jpg";
 import spice from "@/assets/spice-tour.jpg";
 import turtle from "@/assets/turtle-snorkel.jpg";
 import heroVideo from "@/assets/safari-hero.mp4.asset.json";
-import type { TourCard } from "@/components/Card3D";
+import type { Tour } from "@/components/TourCard";
 
 export const heroVideoUrl = heroVideo.url;
 
-export const featuredSafaris: TourCard[] = [
-  { slug: "serengeti", title: "Serengeti Big Five", subtitle: "7 days · Lion, Leopard, Elephant, Buffalo, Rhino", image: lion, tag: "Top pick" },
-  { slug: "ngorongoro", title: "Ngorongoro Crater", subtitle: "3 days · World heritage caldera safari", image: elephants, tag: "Iconic" },
-  { slug: "tarangire", title: "Tarangire Elephants", subtitle: "2 days · Baobab valleys & herds", image: giraffe },
-  { slug: "selous", title: "Nyerere Wild River", subtitle: "5 days · Boat & walking safari", image: cheetah, tag: "Adventure" },
-  { slug: "manyara", title: "Lake Manyara", subtitle: "1 day · Tree-climbing lions", image: lion },
+export const featuredSafaris: Tour[] = [
+  { slug: "serengeti", title: "Serengeti Big Five", subtitle: "Track lion, leopard, elephant, buffalo and rhino across the endless plains.", image: lion, tag: "Bestseller", duration: "7 days", price: "$2,890", location: "Serengeti, TZ" },
+  { slug: "ngorongoro", title: "Ngorongoro Crater", subtitle: "A self-contained ecosystem inside the world's largest intact volcanic caldera.", image: elephants, tag: "Iconic", duration: "3 days", price: "$1,290", location: "Ngorongoro, TZ" },
+  { slug: "tarangire", title: "Tarangire Elephants", subtitle: "Ancient baobabs and the largest elephant herds in northern Tanzania.", image: giraffe, duration: "2 days", price: "$890", location: "Tarangire, TZ" },
+  { slug: "selous", title: "Nyerere Wild River", subtitle: "Boat and walking safari through one of Africa's largest protected wildernesses.", image: cheetah, tag: "Adventure", duration: "5 days", price: "$2,150", location: "Nyerere NP, TZ" },
 ];
 
-export const islandEscapes: TourCard[] = [
-  { slug: "nungwi", title: "Nungwi White Sands", subtitle: "Beach lounging & dhow sunsets", image: beach, tag: "Bestseller" },
-  { slug: "stonetown", title: "Stone Town Heritage", subtitle: "Spice market & carved doors walk", image: stoneTown },
-  { slug: "spice", title: "Spice Farm Trail", subtitle: "Vanilla, clove & cardamom tasting", image: spice },
-  { slug: "mnemba", title: "Mnemba Snorkel", subtitle: "Swim with turtles & reef fish", image: turtle, tag: "Family" },
-  { slug: "prison", title: "Prison Island Tortoises", subtitle: "Half-day boat & island tour", image: beach },
+export const islandEscapes: Tour[] = [
+  { slug: "nungwi", title: "Nungwi White Sands", subtitle: "Beach lounging, dhow sunset cruises and turquoise reef snorkeling.", image: beach, tag: "Bestseller", duration: "5 nights", price: "$1,180", location: "Nungwi, ZNZ" },
+  { slug: "stonetown", title: "Stone Town Heritage", subtitle: "Carved doors, spice markets and Swahili-Arab architecture walking tour.", image: stoneTown, duration: "Half day", price: "$45", location: "Stone Town, ZNZ" },
+  { slug: "spice", title: "Spice Farm Trail", subtitle: "Vanilla, clove and cardamom tasting on a working family-run plantation.", image: spice, duration: "Full day", price: "$60", location: "Kizimbani, ZNZ" },
+  { slug: "mnemba", title: "Mnemba Atoll Snorkel", subtitle: "Swim with green turtles and reef fish on Zanzibar's most pristine reef.", image: turtle, tag: "Family", duration: "Full day", price: "$95", location: "Mnemba, ZNZ" },
 ];
 
-export const editorial: TourCard[] = [
-  { slug: "honeymoon", title: "Honeymoon Edit", subtitle: "Private villas, candlelit beaches", image: beach, tag: "Curated" },
-  { slug: "luxury", title: "Luxury Tented Camps", subtitle: "Under-canvas glamour in the bush", image: cheetah },
-  { slug: "family", title: "Family Adventures", subtitle: "Kid-friendly safaris & beaches", image: giraffe },
-  { slug: "photo", title: "Photographer's Cut", subtitle: "Golden hour wildlife pursuits", image: elephants, tag: "Pro" },
-  { slug: "budget", title: "Backpacker Routes", subtitle: "Smart budget itineraries", image: stoneTown },
+export const editorial: Tour[] = [
+  { slug: "honeymoon", title: "Honeymoon Edit", subtitle: "Private villas, candlelit beach dinners and a two-night bush escape.", image: beach, tag: "Curated", duration: "10 days", price: "$4,650", location: "TZ + ZNZ" },
+  { slug: "luxury", title: "Luxury Tented Camps", subtitle: "Under-canvas glamour with private guides in the heart of the Serengeti.", image: cheetah, duration: "8 days", price: "$5,900", location: "Serengeti, TZ" },
+  { slug: "family", title: "Family Adventures", subtitle: "Kid-friendly safaris paired with calm-water beaches and gentle wildlife.", image: giraffe, duration: "12 days", price: "$3,450", location: "TZ + ZNZ" },
+  { slug: "photo", title: "Photographer's Cut", subtitle: "Golden-hour wildlife pursuits with custom 4x4s and expert spotters.", image: elephants, tag: "Pro", duration: "9 days", price: "$4,200", location: "Northern Circuit" },
 ];
 
 export const allTours = [...featuredSafaris, ...islandEscapes, ...editorial];
