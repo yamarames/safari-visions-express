@@ -232,19 +232,19 @@ function Home() {
       <TrustStrip />
       <ValueProps />
 
-      <Section eyebrow="Featured · Tanzania" title="Signature safaris this season." link={{ to: "/safaris", label: "All safaris" }}>
+      <Section idx="01" eyebrow="Featured · Tanzania" title="Signature safaris this season." link={{ to: "/safaris", label: "All safaris" }}>
         <Grid items={featuredSafaris} />
       </Section>
 
       <div className="hairline container-pro" />
 
-      <Section eyebrow="Featured · Zanzibar" title="Slow-travel island escapes." link={{ to: "/tours", label: "All tours" }}>
+      <Section idx="02" eyebrow="Featured · Zanzibar" title="Slow-travel island escapes." link={{ to: "/tours", label: "All tours" }}>
         <Grid items={islandEscapes} />
       </Section>
 
       <Testimonial />
 
-      <Section eyebrow="Editor's picks" title="Curated journeys for every kind of traveler.">
+      <Section idx="04" eyebrow="Editor's picks" title="Curated journeys for every kind of traveler.">
         <Grid items={editorial} />
       </Section>
 
