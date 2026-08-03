@@ -247,3 +247,167 @@ clips, each using the restyled still as `start_image`:
 
 Seedance 2.0 at 4K / `mode: std` / 5s costs 110 credits per clip — roughly 660 credits
 for the six.
+
+## Full paste-ready prompts
+
+Each block below is already `[LOCK]` + shot + `[STYLE]` merged into one prompt. Copy the whole block, nothing to assemble.
+
+### 1 — Pool + staircase villa, vertical
+
+Source: `b5a01ea9-b9a6b44175914972a791df66044b846b.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same villa and kidney-shaped pool. Camera lowered to 40cm above the pool coping on the near side, wide anamorphic 40mm, so the water surface fills the bottom third and leads the eye to the staircase. Sun low behind the thatched roof creating a rim of fire along the roof ridge, warm bounce off the white wall. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 2 — Pool + staircase villa, cleaner vertical
+
+Source: `2fb4a40d-cb7ffc72db7c4c9d85b6f49ce82ead3f.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same framing intent as the reference but the camera steps 1.5m left and tilts up slightly, 32mm anamorphic, palm fronds entering top-left as a soft dark foreground frame. Sun flaring through the fronds, one long horizontal blue streak across the upper third. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 3 — Pool wide with sun lounger
+
+Source: `06035213-667322e138a0435a9d8cc001986bd6fb.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same scene, camera drops to knee height at the pool's south edge, 35mm anamorphic. Low sun skims the water making the surface a sheet of molten gold with specular glitter, the lounger and palm rim-lit, the makuti fence glowing amber behind. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 4 — Villa with flower arch
+
+Source: `18adbf1b-2adb5ce5fd4f47439fcedd448b4c5b86.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same villa, arch and pool. Camera moves in half a metre and drops to 1m, 50mm anamorphic, shallow focus on the flower arch with the staircase falling gently soft behind. Sun directly behind the roof ridge, blooming a warm halo over the white wall. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 5 — Villa front, pergola and terrace
+
+Source: `e8e78117-3e46258d22bf4a4589aa7372859e0f91.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same building and terrace. Camera to 1.2m height, 28mm anamorphic, dead-centre symmetrical to the pergola columns, palm frond framing right edge. Golden hour sun from camera-right throwing long column shadows across the polished terrace floor, the white render glowing peach. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 6 — Villa at night, lit interior (blue hour)
+
+Source: `fb4e5a95-5c3ec8c52bec4a929c84454b22c9c076.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same villa at deep blue hour instead of night. Camera at 1.2m, 32mm anamorphic, centred. Interior tungsten light spilling warm onto the terrace, pool glowing turquoise from below, sky a deep cobalt gradient with the last band of orange at the horizon. Warm-cool contrast between the lit rooms and the blue exterior. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 7 — Banda with fairy lights, dusk
+
+Source: `c8264394-37096019e3994ff2bef2d5ad587f65d1.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same banda, daybed and fairy lights. Camera lowered to 60cm and pushed in one metre, 40mm anamorphic. Fairy lights render as soft oval bokeh orbs, the last warm light rakes across the white sand from camera-left, sky a graded magenta-to-indigo. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 8 — Swing bed, orange cushions
+
+Source: `03e86140-35f3f7cf419c4785a2de5354e0f65386.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same swing seat, cushions and shell curtain. Camera to seat height, 50mm anamorphic, three-quarter angle from the left so the ropes lead diagonally out of frame top. Low sun through the thatch throwing dappled light across the cream cushions, the orange pillows glowing saturated but not clipped. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 9 — Bathroom sink, driftwood mirror
+
+Source: `790857c1-6708eafb3cdc4433b8d6076d12c5404e.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same sink, wooden shelf, mirror and amenities — remove the person's reflection in the mirror, show only the empty room reflected. Camera slightly left of centre at counter height, 40mm anamorphic. Warm practical light from the right, a shaft of golden window light hitting the wall behind, replace the flat yellow cast with a clean warm-white grade so the wall reads as soft cream. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 10 — Bed with rose-petal heart
+
+Source: `32441f49-7720fe98b1a44e9480d0be4641b995dc.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same bed, headboard, mosquito net, petals and cushions. Camera at foot of bed, lowered to 90cm, 35mm anamorphic, symmetrical. Golden hour light entering from the left through an unseen window, dappling across the white sheet, the mosquito net catching the light as a glowing veil. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 11 — Bed with LOVE petals (needs most repair)
+
+Source: `383d0e8f-f3c24b26140b4b398a49b082b1782cfa.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same bed and petal lettering, restored to full sharpness and correct exposure. Camera square to the bed at 1m, 40mm anamorphic. Warm evening light from the right, net drapes catching a soft glow. Remove all motion blur and colour cast; render clean whites in the linen and true crimson in the petals. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 12 — Bedroom interior, four-poster
+
+Source: `e0d1be27-85924dd2eec347638db3057e4902c944.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same room, bed, ceiling beams, fan, window and sink. Camera to 1.4m, 24mm anamorphic from the doorway, verticals kept straight. Late sun pouring through the window casting a hard warm rectangle across the polished floor, mangrove ceiling poles catching the light, cool shadow in the corners. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 13 — Towel ladder and amenities
+
+Source: `3390f22b-162174eb93fb4c9dba8ec97bab46733f.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same ladder, towels and toiletries. Camera moves back half a metre to 1.3m, 50mm anamorphic, shallow depth so the front towel edge is sharp and the wall falls soft. Warm side light from the left, replace the yellow cast with a clean warm-white grade so the white towel is white and the red towel is deep scarlet. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 14 — Beach fire at night (fire-lit)
+
+Source: `874528cf-84dc52cfcf5c4835b17312c1c3397437.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same fire pit and burning logs. Camera lowered to sand level, 40mm anamorphic, embers in the foreground soft. Fire as the sole key light, warm orange falloff into deep blue night, faint moonlight rim on the sand, drifting smoke catching the glow. Deep blacks with detail retained, no crushed shadows. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 15 — Two chairs, stool, bougainvillea
+
+Source: `dafc82fb-e7d159eb922f4338b8e6f818ccc19a81.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same chairs, stool, bottle, bowl and flowers. Camera to seat height, 40mm anamorphic, slight three-quarter from the left so the pool reads over the right shoulder of the frame. Last golden light across the terrace floor turning it deep ochre, long chair shadows, bougainvillea backlit and glowing translucent pink. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 16 — Shell-curtain banda on grass
+
+Source: `2f93b950-555635c7ca8e4da5b06f26dd78639443.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same hut, shell curtains, deck and planters. Camera drops to 80cm, 35mm anamorphic, three-quarter from the left. Low sun behind camera-right raking the thatch texture into strong relief, shell strings catching light as thousands of small warm specular points, grass glowing lime-gold. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 17 — Shell hut with round gazebo
+
+Source: `bf766647-44e45355f70c4f5ab1fc817593232cfd.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same hut, gazebo, garden and planters. Camera to 1.2m, 28mm anamorphic, red croton leaves held as a soft dark foreground frame on the left. Low golden sun from camera-left, the gazebo's conical thatch rim-lit, long shadow reaching toward the lens across the grass. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 18 — Sand courtyard with daybed and palm
+
+Source: `9ccc4375-81c5cd0a2744419f88e7aaf3aa00ad13.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same courtyard, palm, daybed and thatched shelter. Camera to 1m, 32mm anamorphic. Low sun from camera-right throwing the palm's shadow in a long graphic diagonal across the raked sand, shell strings glowing, the sand warm ivory rather than grey. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 19 — Sunset with outrigger canoe
+
+Source: `c21a957f-9e29b87483cb4d809863cf2614604b7e.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same ngalawa canoe, garden, palm and makuti fence. Camera to 70cm, 40mm anamorphic, sun kept just above the fence line for a controlled flare. Strong backlight rimming the canoe hull and every blade of grass, foliage in rich silhouette, one long horizontal blue anamorphic streak across the sun. Restore natural colour — no oversaturated HDR look. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
+
+### 20 — Rooftop view over the garden
+
+Source: `0442be17-714979910f3648408f581d7a7a1a9ac3.jpeg`
+
+```
+Preserve the architecture, materials, layout, proportions, furniture and every object exactly as in the reference photograph. Do not add, remove, relocate or redesign anything. Same building, same pool shape, same plants, same objects in the same positions. Change ONLY the lighting, camera angle, lens character and colour grade. Same rooftop vantage, makuti eave, palms, daybed and view. Camera holds the eave as a dark top frame, 24mm anamorphic, horizon level. Golden hour instead of midday: warm light flooding the palm canopy from camera-left, long shadows across the sand courtyard, sky graded to a soft warm gradient with the flat blue removed. Shot on ARRI Alexa 65 with Panavision C-Series anamorphic lenses, 2x squeeze, T2.8, oval bokeh, horizontal blue lens flare, slight edge barrel distortion. Golden hour twenty minutes before sunset: warm 3200K sun raking low from camera left, long soft shadows, deep amber falloff, cool 6500K sky fill in the shadow side, light volumetric haze and dust in the air. Kodak Vision3 500T grain, teal-and-amber digital intermediate, rolled-off filmic highlights, lifted espresso blacks, high dynamic range. Tack-sharp micro-detail in thatch fibre, wood grain and sand texture. Luxury travel commercial finish, 4K.
+```
