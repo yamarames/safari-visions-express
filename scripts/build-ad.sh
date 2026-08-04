@@ -26,7 +26,7 @@ FFMPEG="${FFMPEG:-$(python3 -c 'import imageio_ffmpeg;print(imageio_ffmpeg.get_f
 mkdir -p "$OUTDIR" "$OUTDIR/tmp"
 TMP="$OUTDIR/tmp"
 
-W=1920; H=1080; FPS=25
+W=1920; H=1080; FPS=24   # match the Seedance source rate exactly — no frame duplication
 BAR=$(python3 -c "print(int(($H - $W/2.39)/2))")   # 2.39:1 letterbox bar height
 
 # ---------------------------------------------------------------------------
@@ -124,15 +124,19 @@ echo "==> vfx, titles and end card"
   -i "$TMP/cut.mp4" \
   -loop 1 -framerate $FPS -t "$TOTAL" -i "$TMP/title_open.png" \
   -loop 1 -framerate $FPS -t "$TOTAL" -i "$TMP/title_end.png" \
+  -f lavfi -t "$TOTAL" -i "color=c=black:s=${W}x${H}:r=${FPS}" \
   -filter_complex "\
 [0:v]noise=alls=6:allf=t+u,vignette=PI/5,\
 drawbox=x=0:y=0:w=iw:h=${BAR}:color=black@1:t=fill,\
 drawbox=x=0:y=ih-${BAR}:w=iw:h=${BAR}:color=black@1:t=fill[base];\
 [1:v]format=rgba,fade=t=in:st=${TITLE_IN}:d=1:alpha=1,\
 fade=t=out:st=${TITLE_OUT}:d=1:alpha=1[topen];\
+[3:v]format=rgba,colorchannelmixer=aa=0.55,\
+fade=t=in:st=${END_IN}:d=1.2:alpha=1[scrim];\
 [2:v]format=rgba,fade=t=in:st=${END_IN}:d=1.2:alpha=1[tend];\
 [base][topen]overlay=0:0[o1];\
-[o1][tend]overlay=0:0,fade=t=in:st=0:d=1.2,fade=t=out:st=${FADE_OUT}:d=1.5[vout]" \
+[o1][scrim]overlay=0:0[o2];\
+[o2][tend]overlay=0:0,fade=t=in:st=0:d=1.2,fade=t=out:st=${FADE_OUT}:d=1.5[vout]" \
   -map "[vout]" -map 0:a \
   -af "loudnorm=I=-14:TP=-1.5:LRA=11,afade=t=in:st=0:d=1.2,afade=t=out:st=${FADE_OUT}:d=1.5" \
   -c:v libx264 -preset slow -crf 16 -pix_fmt yuv420p -c:a aac -b:a 192k \
