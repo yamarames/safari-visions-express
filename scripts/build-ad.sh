@@ -18,7 +18,7 @@ set -euo pipefail
 
 CLIPDIR="${1:?usage: build-ad.sh CLIPDIR OUTDIR [BRAND] [TAGLINE] [MUSIC]}"
 OUTDIR="${2:?missing OUTDIR}"
-BRAND="${3:-KITEZI VILLA}"
+BRAND="${3:-Paradise Villa}"
 TAGLINE="${4:-Zanzibar}"
 MUSIC="${5:-}"
 
