@@ -1,0 +1,557 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>bilo — overlay</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root{
+    --ink:#16110E;
+    --paper:#F7F2EA;
+    --clay:#B4613C;
+    --gold:#DCA85A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1920px;background:transparent;overflow:hidden}
+  body{
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:geometricPrecision;
+  }
+  #stage{position:absolute;inset:0;width:1080px;height:1920px}
+  .lyr{position:absolute;inset:0;will-change:transform,opacity}
+
+  /* ---- scrims ------------------------------------------------------- */
+  #scrimTop{background:linear-gradient(180deg,rgba(10,7,5,.42),rgba(10,7,5,0) 300px)}
+  #scrimBot{background:linear-gradient(0deg,rgba(10,7,5,.62) 160px,rgba(10,7,5,.30) 420px,rgba(10,7,5,0) 700px)}
+
+  /* ---- flash -------------------------------------------------------- */
+  #flash{background:#fff}
+
+  /* ---- shared type -------------------------------------------------- */
+  .mono{font-family:'Inter',sans-serif;font-weight:500;letter-spacing:.30em;text-transform:uppercase}
+  .serif{font-family:'Fraunces',serif}
+  .geo{font-family:'Outfit',sans-serif}
+  .clip{overflow:hidden;display:block;position:relative}
+
+  /* The ® in bilo's own lockup sits at the top-right of the o, about a sixth
+     of the ascender tall. These ratios reproduce that at any wordmark size. */
+  .reg{font-size:.16em;vertical-align:3.15em;font-weight:500;margin-left:.10em}
+
+  /* ---- strobe hook -------------------------------------------------- */
+  .strobe{
+    position:absolute;left:0;right:0;top:50%;
+    text-align:center;color:#fff;
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:208px;line-height:1;
+    transform-origin:50% 50%;
+  }
+
+  /* ---- brand open --------------------------------------------------- */
+  #open{position:absolute;left:0;right:0;top:0;bottom:0}
+  #openMark{
+    position:absolute;left:0;right:0;top:934px;text-align:center;
+    font-family:'Outfit',sans-serif;font-weight:600;font-size:196px;
+    line-height:1;color:#fff;letter-spacing:-.015em;
+  }
+  #openRule{position:absolute;left:50%;top:1204px;height:3px;background:var(--clay);transform-origin:50% 50%}
+  #openKick{
+    position:absolute;left:0;right:0;top:1246px;text-align:center;
+    font-size:27px;color:rgba(255,255,255,.86);
+  }
+
+  /* ---- persistent HUD ----------------------------------------------- */
+  #bug{position:absolute;left:72px;top:74px;font-family:'Outfit',sans-serif;
+       font-weight:600;font-size:44px;color:#fff;line-height:1}
+  #idx{position:absolute;right:72px;top:88px;font-size:22px;color:rgba(255,255,255,.72)}
+  .tick{position:absolute;width:26px;height:26px;border-color:rgba(255,255,255,.55)}
+  #tickL{left:48px;top:48px;border-left:2px solid;border-top:2px solid}
+  #tickR{right:48px;top:48px;border-right:2px solid;border-top:2px solid}
+
+  /* ---- marquee ------------------------------------------------------ */
+  #mq{
+    position:absolute;left:0;right:0;bottom:0;height:160px;
+    background:var(--ink);border-top:3px solid var(--clay);
+    overflow:hidden;
+  }
+  #mqIn{position:absolute;top:0;left:0;height:160px;display:flex;align-items:center;white-space:nowrap}
+  .mqU{display:inline-flex;align-items:center;color:var(--paper)}
+  .mqU b{font-family:'Outfit',sans-serif;font-weight:600;font-size:44px;letter-spacing:-.01em}
+  .mqU i{font-style:normal;font-size:25px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(247,242,234,.80)}
+  .mqU s{text-decoration:none;color:var(--clay);margin:0 34px;font-size:30px}
+
+  /* ---- chapter card ------------------------------------------------- */
+  .chap{position:absolute;left:72px;bottom:238px;display:flex;align-items:flex-end;gap:26px}
+  .chap .num{
+    font-family:'Outfit',sans-serif;font-weight:700;font-size:164px;line-height:.82;
+    color:transparent;-webkit-text-stroke:2.5px rgba(255,255,255,.92);
+  }
+  .chap .col{padding-bottom:14px}
+  .chap .nm{font-size:42px;font-weight:600;letter-spacing:.30em;color:#fff;text-transform:uppercase;
+    text-shadow:0 2px 20px rgba(6,4,3,.55)}
+  .chap .ul{height:4px;background:var(--clay);margin-top:18px;transform-origin:0 50%}
+
+  /* ---- chips -------------------------------------------------------- */
+  .chips{position:absolute;right:72px;bottom:250px;display:flex;flex-direction:column;align-items:flex-end;gap:18px}
+  .chip{
+    border:1.5px solid rgba(255,255,255,.55);border-radius:999px;
+    padding:13px 30px;font-size:23px;font-weight:500;letter-spacing:.22em;
+    color:#fff;text-transform:uppercase;white-space:nowrap;
+    background:rgba(10,7,5,.20);text-shadow:0 1px 12px rgba(6,4,3,.5);
+  }
+
+  /* ---- statement ---------------------------------------------------- */
+  .stmt{position:absolute;left:72px;top:772px;width:940px}
+  .stmt .wash{position:absolute;left:-150px;right:-240px;top:-110px;bottom:-110px;
+    background:radial-gradient(66% 58% at 26% 50%,rgba(6,4,3,.66),rgba(6,4,3,0) 72%)}
+  .stmt .rule{position:relative;width:64px;height:3px;background:var(--clay);margin-bottom:36px;transform-origin:0 50%}
+  .stmt .ln{font-family:'Fraunces',serif;font-size:96px;line-height:1.14;color:#fff;
+    text-shadow:0 2px 28px rgba(6,4,3,.60),0 1px 4px rgba(6,4,3,.38)}
+  .stmt .ln.b{font-weight:400}
+  .stmt .ln.i{font-weight:300;font-style:italic;color:rgba(255,255,255,.93)}
+
+  /* ---- swatches ----------------------------------------------------- */
+  #sw{position:absolute;left:0;right:0;top:1206px;display:flex;justify-content:center;align-items:center;gap:44px}
+  .dot{width:78px;height:78px;border-radius:50%;box-shadow:0 0 0 2px rgba(255,255,255,.55), 0 12px 30px rgba(0,0,0,.25)}
+
+  /* ---- montage ------------------------------------------------------ */
+  #mw{position:absolute;left:0;right:0;top:50%;text-align:center;color:#fff;
+      font-family:'Fraunces',serif;font-weight:900;font-size:148px;line-height:1}
+  .gbar{position:absolute;left:0;right:0;background:#fff}
+
+  /* ---- triptych ----------------------------------------------------- */
+  .div{position:absolute;left:0;right:0;height:3px;background:rgba(255,255,255,.95);transform-origin:50% 50%}
+  .tlab{position:absolute;display:flex;align-items:center;gap:18px;font-size:33px;font-weight:600;
+         letter-spacing:.30em;color:#fff;text-transform:uppercase}
+  .tlab .sq{width:16px;height:16px;background:var(--clay)}
+  #sweep{position:absolute;top:-30%;height:160%;width:340px;
+    background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));
+    transform:rotate(14deg)}
+
+  /* ---- end card ----------------------------------------------------- */
+  #ecScrim{background:radial-gradient(120% 80% at 50% 46%,rgba(12,8,6,.10),rgba(12,8,6,.62))}
+  #ec{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;transform-origin:50% 50%}
+  #ecMark{font-family:'Outfit',sans-serif;font-weight:600;font-size:228px;line-height:1;
+          color:#fff;letter-spacing:-.02em;display:flex;align-items:flex-start;position:relative}
+  #ecMark .ch{display:block;overflow:hidden}
+  #ecMark .ch span{display:block}
+  #ecMark .reg{position:absolute;left:100%;top:44px;margin-left:12px;
+    font-size:36px;font-weight:500;vertical-align:baseline}
+  #ecRule{height:3px;background:var(--clay);margin-top:44px;transform-origin:50% 50%}
+  #ecTag{margin-top:40px;font-size:35px;font-weight:400;letter-spacing:.15em;color:rgba(255,255,255,.94)}
+  #ecCats{margin-top:30px;font-size:23px;font-weight:500;letter-spacing:.34em;color:rgba(255,255,255,.62);text-transform:uppercase}
+  #ecCta{margin-top:74px;background:var(--clay);color:#fff;border-radius:999px;
+         padding:26px 58px;font-size:27px;font-weight:600;letter-spacing:.20em;text-transform:uppercase;
+         box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  #ecSweep{position:absolute;top:0;bottom:0;width:420px;
+    background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.30),rgba(255,255,255,0));
+    transform:rotate(12deg);pointer-events:none}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="lyr" id="scrimTop"></div>
+  <div class="lyr" id="scrimBot"></div>
+
+  <div id="tickL" class="tick"></div>
+  <div id="tickR" class="tick"></div>
+  <div id="bug">bilo<span class="reg">®</span></div>
+  <div id="idx"></div>
+
+  <div id="open">
+    <div id="openMark">bilo<span class="reg">®</span></div>
+    <div id="openRule"></div>
+    <div id="openKick" class="mono">The Home Collection</div>
+  </div>
+
+  <div id="chapters"></div>
+  <div id="chipsets"></div>
+  <div id="stmts"></div>
+
+  <div id="sw"></div>
+
+  <div class="lyr" id="glitch"></div>
+  <div id="mw"></div>
+
+  <div class="lyr" id="tri">
+    <div class="div" id="div1" style="top:640px"></div>
+    <div class="div" id="div2" style="top:1280px"></div>
+    <div class="tlab" id="tl1" style="left:72px;top:540px"><span class="sq"></span><span>01 Living</span></div>
+    <div class="tlab" id="tl2" style="right:72px;top:1180px"><span class="sq"></span><span>02 Sleep</span></div>
+    <div class="tlab" id="tl3" style="left:72px;top:1820px"><span class="sq"></span><span>03 Bath</span></div>
+    <div id="sweep"></div>
+  </div>
+
+  <div id="mq"><div id="mqIn"></div></div>
+
+  <div id="strobe"></div>
+
+  <div class="lyr" id="ecScrim"></div>
+  <div id="ec">
+    <div id="ecMark"></div>
+    <div id="ecRule"></div>
+    <div id="ecTag">Bring Culture to Your Space</div>
+    <div id="ecCats">Living · Sleep · Bath</div>
+    <div id="ecCta">Shop the Collection</div>
+    <div id="ecSweep"></div>
+  </div>
+
+  <div class="lyr" id="flash"></div>
+</div>
+
+<script>
+/* ------------------------------------------------------------------ *
+ * bilo — "The Home Collection"
+ * Motion-graphics overlay. renderAt(t) is a pure function of time, so
+ * the Playwright driver can step it frame by frame and screenshot.
+ * All cut points come from timeline.json, which build_video.py also
+ * uses, so graphics and edit cannot drift apart.
+ * ------------------------------------------------------------------ */
+
+let TL = null, S = null;
+const $ = id => document.getElementById(id);
+
+/* --- easing / envelopes ------------------------------------------- */
+const cl   = (x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const inv  = (t,a,b)=> b<=a ? (t>=b?1:0) : cl((t-a)/(b-a));
+const lerp = (a,b,p)=>a+(b-a)*p;
+const eOut = p=>1-Math.pow(1-p,3);
+const eExp = p=>1-Math.pow(1-p,5);
+const eIn  = p=>p*p*p;
+const eIO  = p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+const eBack= p=>{const c1=1.9,c3=c1+1;return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2);};
+// trapezoid envelope: 0 outside [a,b], ramps in over fi and out over fo
+const env  = (t,a,b,fi=.28,fo=.28)=> (t<a||t>b) ? 0
+             : Math.min(inv(t,a,a+fi), 1-inv(t,b-fo,b));
+// deterministic noise so every render of frame n is identical
+const rnd  = n=>{const x=Math.sin(n*127.1+11.7)*43758.5453;return x-Math.floor(x);};
+
+/* --- style helper -------------------------------------------------- */
+function st(el,o){
+  if(!el) return;
+  if(o.o!==undefined) el.style.opacity = o.o;
+  // Rebuild the whole transform whenever any transform key is present --
+  // testing truthiness here would skip x/y/r of exactly 0 and leave the
+  // previous frame's transform in place, which is invisible on a single
+  // frame and badly wrong once frames are rendered in sequence.
+  const hasT = o.x!==undefined || o.y!==undefined || o.s!==undefined
+            || o.sx!==undefined || o.r!==undefined;
+  if(hasT){
+    const p=[`translate(${(o.x||0).toFixed(2)}px,${(o.y||0).toFixed(2)}px)`];
+    if(o.s!==undefined) p.push(`scale(${o.s.toFixed(4)})`);
+    if(o.sx!==undefined) p.push(`scaleX(${o.sx.toFixed(4)})`);
+    if(o.r!==undefined) p.push(`rotate(${o.r.toFixed(3)}deg)`);
+    el.style.transform = p.join(' ');
+  }
+  if(o.blur!==undefined) el.style.filter = o.blur>0.01?`blur(${o.blur.toFixed(2)}px)`:'none';
+  if(o.w!==undefined) el.style.width = o.w.toFixed(1)+'px';
+  if(o.ls!==undefined) el.style.letterSpacing = o.ls.toFixed(4)+'em';
+  if(o.split!==undefined){
+    const d=o.split, glow='0 4px 46px rgba(6,4,3,.58)';
+    el.style.textShadow = d>0.2
+      ? `${-d.toFixed(1)}px 0 rgba(255,40,90,.85), ${d.toFixed(1)}px 0 rgba(0,220,255,.85), ${glow}`
+      : glow;
+  }
+}
+
+/* --- content ------------------------------------------------------- */
+const HOOK_WORDS = ['Soft.','Warm.','Home.'];
+
+const CHAPTERS = [
+  {num:'01', name:'Living', a:3.35, b:8.95,
+   chips:['Patterned Throws','5 Colourways'],
+   stmt:{a:6.35,b:8.90, l1:'Bring culture', l2:'to your space.'}},
+  {num:'02', name:'Sleep',  a:9.15, b:14.85,
+   chips:['Premium Cotton','Sateen Finish'],
+   stmt:{a:11.50,b:14.80, l1:'Premium cotton', l2:'& sateen.'}},
+  {num:'03', name:'Bath',   a:15.05, b:20.55,
+   chips:['Waffle Weave','4 Colourways'],
+   stmt:{a:17.45,b:20.50, l1:'Towels you', l2:'can trust.'}},
+];
+
+// pulled straight off the four towels in the source footage
+const SWATCHES = ['#FDFCFA','#EBC6C2','#BACEDC','#8D7A69'];
+
+const MONTAGE_WORDS = ['Woven','Cotton','Waffle','Texture','Layered','Soft','Pattern','Trust'];
+
+const MQ_UNIT =
+  '<span class="mqU"><b>bilo<span class="reg">®</span></b><s>·</s>' +
+  '<i>Bring Culture to Your Space</i><s>·</s>' +
+  '<i>Premium Cotton &amp; Sateen</i><s>·</s>' +
+  '<i>Towels You Can Trust</i><s>·</s></span>';
+
+/* --- build DOM ----------------------------------------------------- */
+let chapEls=[], chipEls=[], stmtEls=[], mqUnitW=0, montageCuts=[];
+
+function build(){
+  // strobe words
+  $('strobe').innerHTML = HOOK_WORDS
+    .map((w,i)=>`<div class="strobe" id="sb${i}">${w}</div>`).join('');
+
+  // chapters + chips + statements
+  $('chapters').innerHTML = CHAPTERS.map((c,i)=>
+    `<div class="chap" id="ch${i}">
+       <div class="num">${c.num}</div>
+       <div class="col">
+         <div class="clip"><div class="nm" id="chn${i}">${c.name}</div></div>
+         <div class="ul" id="chu${i}"></div>
+       </div>
+     </div>`).join('');
+  $('chipsets').innerHTML = CHAPTERS.map((c,i)=>
+    `<div class="chips" id="cs${i}">${
+      c.chips.map((x,j)=>`<div class="chip" id="cp${i}_${j}">${x}</div>`).join('')
+    }</div>`).join('');
+  $('stmts').innerHTML = CHAPTERS.map((c,i)=>
+    `<div class="stmt" id="sm${i}">
+       <div class="wash"></div>
+       <div class="rule" id="smr${i}"></div>
+       <div class="clip"><div class="ln b" id="sml${i}_0">${c.stmt.l1}</div></div>
+       <div class="clip"><div class="ln i" id="sml${i}_1">${c.stmt.l2}</div></div>
+     </div>`).join('');
+
+  chapEls = CHAPTERS.map((c,i)=>({
+    root:$('ch'+i), nm:$('chn'+i), ul:$('chu'+i),
+    set:$('cs'+i), chips:c.chips.map((_,j)=>$(`cp${i}_${j}`)),
+    stmt:$('sm'+i), rule:$('smr'+i),
+    lines:[$(`sml${i}_0`),$(`sml${i}_1`)],
+  }));
+
+  // swatches
+  $('sw').innerHTML = SWATCHES
+    .map((c,i)=>`<div class="dot" id="dot${i}" style="background:${c}"></div>`).join('');
+
+  // glitch bars
+  $('glitch').innerHTML = [0,1,2,3,4]
+    .map(i=>`<div class="gbar" id="gb${i}"></div>`).join('');
+
+  // end-card wordmark, one clipped column per letter
+  $('ecMark').innerHTML = 'bilo'.split('')
+    .map((c,i)=>`<span class="ch"><span id="ecl${i}">${c}</span></span>`).join('')
+    + '<span class="reg" id="ecReg">®</span>';
+
+  // marquee: repeat one unit until it comfortably overflows the frame,
+  // then scroll by exactly one unit width so the loop is seamless
+  $('mqIn').innerHTML = MQ_UNIT;
+  mqUnitW = $('mqIn').firstElementChild.getBoundingClientRect().width;
+  const n = Math.ceil(1080/mqUnitW)+2;
+  $('mqIn').innerHTML = MQ_UNIT.repeat(n);
+
+  montageCuts = ['m1','m2','m3','m4','m5','m6','m7','m8'].map(k=>S[k].startT);
+}
+
+/* --- flashes ------------------------------------------------------- */
+function flashes(){
+  const f = [];
+  for(let i=0;i<6;i++) f.push({t:S['h'+(i+1)].startT, d:.09, p:i%2?.50:.58});
+  f.push({t:S.hero.startT,  d:.17, p:.88});   // settle onto the hero
+  f.push({t:S.liv_b.startT, d:.10, p:.34});   // punch cuts inside chapters
+  f.push({t:S.slp_b.startT, d:.09, p:.30});
+  f.push({t:S.slp_c.startT, d:.09, p:.30});
+  f.push({t:S.bth_b.startT, d:.09, p:.30});
+  f.push({t:S.bth_c.startT, d:.09, p:.30});
+  f.push({t:S.m1.startT,    d:.13, p:.80});   // into the montage
+  for(let i=1;i<8;i++) f.push({t:S['m'+(i+1)].startT, d:.07, p:.34});
+  f.push({t:S.tri.startT, d:.13, p:.62});
+  f.push({t:S.ec.startT,  d:.22, p:.95});
+  return f;
+}
+let FLASH = [];
+
+/* --- the render ---------------------------------------------------- */
+function renderAt(t){
+  const fr = Math.round(t*TL.fps);
+
+  /* flash ---------------------------------------------------------- */
+  let fo=0;
+  for(const f of FLASH){
+    if(t>=f.t && t<f.t+f.d) fo = Math.max(fo, f.p*(1-inv(t,f.t,f.t+f.d)));
+  }
+  st($('flash'),{o:fo});
+
+  /* body window: everything between the hero and the montage --------- */
+  const bodyA = S.hero.startT, bodyB = S.m1.startT;
+  const inBody = t>=bodyA-.1 && t<bodyB;
+
+  st($('scrimTop'),{o: env(t,bodyA+.3,bodyB-.2,.5,.4)*0.9});
+  st($('scrimBot'),{o: env(t,bodyA-.05,bodyB-.15,.35,.35)});
+
+  /* --- persistent HUD --------------------------------------------- */
+  const hudO = env(t,S.liv_a.startT+.05,bodyB-.45,.45,.35);
+  st($('bug'),{o:hudO, y:lerp(-14,0,eOut(inv(t,S.liv_a.startT,S.liv_a.startT+.5)))});
+  st($('tickL'),{o:hudO*.6});
+  st($('tickR'),{o:hudO*.6});
+  let ci = -1;
+  CHAPTERS.forEach((c,i)=>{ if(t>=c.a-.2 && t<c.b) ci=i; });
+  $('idx').textContent = ci>=0 ? `${CHAPTERS[ci].num} / 03` : '';
+  st($('idx'),{o:hudO});
+
+  /* --- strobe hook ------------------------------------------------- */
+  for(let i=0;i<3;i++){
+    const a = S['h'+(i*2+1)].startT, b = a + 4*2/TL.fps; // two cuts per word
+    const el = $('sb'+i);
+    if(t<a || t>=b){ st(el,{o:0}); continue; }
+    const p = eExp(inv(t,a,a+.11));
+    st(el,{o:1, s:lerp(1.24,1.0,p), y:-104, r:lerp(i%2?2.2:-2.2,0,p),
+           ls:lerp(.16,.015,p), split:lerp(26,0,p)});
+  }
+
+  /* --- brand open -------------------------------------------------- */
+  {
+    const a = S.hero.startT, b = S.liv_a.startT;   // 0.80 -> 3.30
+    const out = inv(t,b-.30,b);
+    const alive = t>=a-.05 && t<b;
+    const base = alive ? 1-out : 0;
+    st($('open'),{o:base, s:lerp(1,1.07,eIn(out)), blur:lerp(0,10,out)});
+    if(alive){
+      const pm = eExp(inv(t,a+.22,a+.72));
+      st($('openMark'),{o:pm, y:lerp(38,0,pm), ls:lerp(.05,-.015,pm)});
+      const pr = eOut(inv(t,a+.15,a+.60));
+      st($('openRule'),{sx:pr, x:-210, w:420});
+      const pk = eOut(inv(t,a+.52,a+.95));
+      st($('openKick'),{o:pk, y:lerp(20,0,pk), ls:lerp(.55,.30,pk)});
+    }
+  }
+
+  /* --- marquee ----------------------------------------------------- */
+  {
+    const a = S.hero.startT-.02, b = bodyB-.45;
+    const up   = eOut(inv(t,a,a+.24));
+    const down = eIn(inv(t,b,b+.30));
+    st($('mq'),{o:1, y:lerp(163,0,up)+lerp(0,163,down)});
+    const scroll = (t-a)*132;
+    $('mqIn').style.transform = `translateX(${(-(scroll%mqUnitW)).toFixed(2)}px)`;
+  }
+
+  /* --- chapters ---------------------------------------------------- */
+  CHAPTERS.forEach((c,i)=>{
+    const E = chapEls[i];
+    const live = t>=c.a-.1 && t<c.b+.05;
+    if(!live){ st(E.root,{o:0}); st(E.set,{o:0}); st(E.stmt,{o:0}); return; }
+
+    const out = inv(t,c.b-.32,c.b);
+    // card
+    const pin = eOut(inv(t,c.a,c.a+.42));
+    st(E.root,{o:pin*(1-out), y:lerp(46,0,pin)+lerp(0,-32,eIn(out))});
+    const pn = eExp(inv(t,c.a+.16,c.a+.62));
+    st(E.nm,{o:1, x:lerp(-360,0,pn)});
+    st(E.ul,{sx:eOut(inv(t,c.a+.42,c.a+.88)), w:262});
+
+    // chips, staggered in from the right
+    st(E.set,{o:1-out});
+    E.chips.forEach((el,j)=>{
+      const p = eOut(inv(t, c.a+.58+j*.13, c.a+1.02+j*.13));
+      st(el,{o:p*(1-out), x:lerp(52,0,p)});
+    });
+
+    // statement
+    const s = c.stmt;
+    const sLive = t>=s.a-.05 && t<s.b+.05;
+    if(!sLive){ st(E.stmt,{o:0}); }
+    else{
+      const so = inv(t,s.b-.30,s.b);
+      st(E.stmt,{o:1-so, y:lerp(0,-26,eIn(so))});
+      st(E.rule,{sx:eOut(inv(t,s.a,s.a+.42))});
+      E.lines.forEach((el,j)=>{
+        const p = eExp(inv(t, s.a+.16+j*.14, s.a+.72+j*.14));
+        st(el,{o:p, y:lerp(112,0,p)});
+      });
+    }
+  });
+
+  /* --- swatches (bath, over the towel stack) ----------------------- */
+  {
+    const a = 15.60, b = 17.05;
+    const live = t>=a-.05 && t<b+.05;
+    st($('sw'),{o: live ? 1-inv(t,b-.28,b) : 0});
+    if(live) SWATCHES.forEach((_,i)=>{
+      const p = eBack(inv(t, a+i*.075, a+.52+i*.075));
+      st($('dot'+i),{o:cl(p*1.4), s:cl(p,0,1.02), y:lerp(26,0,cl(p))});
+    });
+  }
+
+  /* --- montage ----------------------------------------------------- */
+  {
+    const a = S.m1.startT, b = S.tri.startT;
+    const live = t>=a && t<b;
+    st($('mw'),{o:0});
+    st($('glitch'),{o: live?1:0});
+    if(live){
+      let k = 0;
+      for(let i=0;i<montageCuts.length;i++) if(t>=montageCuts[i]) k=i;
+      const c0 = montageCuts[k];
+      const p  = eExp(inv(t,c0,c0+.085));
+      $('mw').textContent = MONTAGE_WORDS[k];
+      st($('mw'),{o:1, s:lerp(1.18,1.0,p), y:-74+(k%2?34:-34),
+                  r:(k%2?1.6:-1.6)*(1-p), ls:lerp(.12,.02,p),
+                  split:lerp(22,0,p)});
+      // glitch bars reshuffle every frame, deterministically
+      for(let i=0;i<5;i++){
+        const el=$('gb'+i), s=rnd(fr*7+i*13);
+        const on = s>.52;
+        el.style.top    = (rnd(fr*3+i*29)*1860).toFixed(0)+'px';
+        el.style.height = (3+rnd(fr*5+i*7)*13).toFixed(0)+'px';
+        el.style.background = i%2 ? '#fff' : 'var(--clay)';
+        st(el,{o: on ? .18+rnd(fr+i)*.45 : 0,
+               x: (rnd(fr*11+i)-.5)*90});
+      }
+    }
+  }
+
+  /* --- triptych ---------------------------------------------------- */
+  {
+    const a = S.tri.startT, b = S.ec.startT;      // 22.87 -> 25.60
+    const live = t>=a-.05 && t<b;
+    st($('tri'),{o: live?1:0});
+    if(live){
+      const out = inv(t,b-.32,b);
+      const pd = eOut(inv(t,a+.08,a+.48));
+      st($('div1'),{sx:pd*(1-out), o:1});
+      st($('div2'),{sx:eOut(inv(t,a+.16,a+.56))*(1-out), o:1});
+      [['tl1',1],['tl2',-1],['tl3',1]].forEach(([id,dir],i)=>{
+        const p = eExp(inv(t, a+.16+i*.11, a+.72+i*.11));
+        st($(id),{o:p*(1-out), x:lerp(72*dir,0,p)+lerp(0,-40*dir,eIn(out))});
+      });
+      // one light sweep across the whole split screen
+      const ps = inv(t,a+1.72,a+2.24);
+      st($('sweep'),{o: ps>0&&ps<1 ? .85 : 0, x:lerp(-460,1420,eIO(ps))});
+    }
+  }
+
+  /* --- end card ---------------------------------------------------- */
+  {
+    const a = S.ec.startT;                        // 25.60
+    const live = t>=a-.02;
+    st($('ecScrim'),{o: live ? eOut(inv(t,a+.05,a+.75))*1 : 0});
+    st($('ec'),{o: live?1:0, s: live ? lerp(1.0,1.03,eIO(inv(t,a+.15,a+4.4))) : 1});
+    if(live){
+      'bilo'.split('').forEach((_,i)=>{
+        const p = eExp(inv(t, a+.20+i*.055, a+.72+i*.055));
+        st($('ecl'+i),{o:1, y:lerp(118,0,p)});
+      });
+      const pr = eBack(inv(t,a+.62,a+1.00));
+      st($('ecReg'),{o:cl(pr*1.5), s:cl(pr,0,1.03)});
+      const pu = eOut(inv(t,a+.82,a+1.28));
+      st($('ecRule'),{sx:pu, w:340, o:1});
+      const pt = eOut(inv(t,a+1.14,a+1.66));
+      st($('ecTag'),{o:pt, y:lerp(22,0,pt), ls:lerp(.30,.15,pt)});
+      const pc = eOut(inv(t,a+1.84,a+2.34));
+      st($('ecCats'),{o:pc*.98, y:lerp(16,0,pc)});
+      const pb = eBack(inv(t,a+2.58,a+3.10));
+      st($('ecCta'),{o:cl(pb*1.6), s:cl(pb,0,1.02), y:lerp(20,0,cl(pb))});
+      const ps = inv(t,a+3.28,a+4.05);
+      st($('ecSweep'),{o: ps>0&&ps<1 ? 1 : 0, x:lerp(-520,1500,eIO(ps))});
+    }
+  }
+}
+
+window.setTimeline = tl => {
+  TL = tl; S = tl.shots;
+  build();
+  FLASH = flashes();
+  return true;
+};
+window.renderAt = renderAt;
+</script>
+</body>
+</html>

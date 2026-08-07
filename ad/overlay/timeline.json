@@ -1,0 +1,184 @@
+{
+ "fps": 30,
+ "w": 1080,
+ "h": 1920,
+ "totalFrames": 900,
+ "duration": 30.0,
+ "shots": {
+  "h1": {
+   "start": 0,
+   "end": 4,
+   "startT": 0.0,
+   "endT": 0.13333333333333333,
+   "block": "hook"
+  },
+  "h2": {
+   "start": 4,
+   "end": 8,
+   "startT": 0.13333333333333333,
+   "endT": 0.26666666666666666,
+   "block": "hook"
+  },
+  "h3": {
+   "start": 8,
+   "end": 12,
+   "startT": 0.26666666666666666,
+   "endT": 0.4,
+   "block": "hook"
+  },
+  "h4": {
+   "start": 12,
+   "end": 16,
+   "startT": 0.4,
+   "endT": 0.5333333333333333,
+   "block": "hook"
+  },
+  "h5": {
+   "start": 16,
+   "end": 20,
+   "startT": 0.5333333333333333,
+   "endT": 0.6666666666666666,
+   "block": "hook"
+  },
+  "h6": {
+   "start": 20,
+   "end": 24,
+   "startT": 0.6666666666666666,
+   "endT": 0.8,
+   "block": "hook"
+  },
+  "hero": {
+   "start": 24,
+   "end": 99,
+   "startT": 0.8,
+   "endT": 3.3,
+   "block": "hook"
+  },
+  "liv_a": {
+   "start": 99,
+   "end": 186,
+   "startT": 3.3,
+   "endT": 6.2,
+   "block": "living"
+  },
+  "liv_b": {
+   "start": 186,
+   "end": 273,
+   "startT": 6.2,
+   "endT": 9.1,
+   "block": "living"
+  },
+  "slp_a": {
+   "start": 273,
+   "end": 339,
+   "startT": 9.1,
+   "endT": 11.3,
+   "block": "sleep"
+  },
+  "slp_b": {
+   "start": 339,
+   "end": 396,
+   "startT": 11.3,
+   "endT": 13.2,
+   "block": "sleep"
+  },
+  "slp_c": {
+   "start": 396,
+   "end": 450,
+   "startT": 13.2,
+   "endT": 15.0,
+   "block": "sleep"
+  },
+  "bth_a": {
+   "start": 450,
+   "end": 516,
+   "startT": 15.0,
+   "endT": 17.2,
+   "block": "bath"
+  },
+  "bth_b": {
+   "start": 516,
+   "end": 573,
+   "startT": 17.2,
+   "endT": 19.1,
+   "block": "bath"
+  },
+  "bth_c": {
+   "start": 573,
+   "end": 630,
+   "startT": 19.1,
+   "endT": 21.0,
+   "block": "bath"
+  },
+  "m1": {
+   "start": 630,
+   "end": 637,
+   "startT": 21.0,
+   "endT": 21.233333333333334,
+   "block": "montage"
+  },
+  "m2": {
+   "start": 637,
+   "end": 644,
+   "startT": 21.233333333333334,
+   "endT": 21.466666666666665,
+   "block": "montage"
+  },
+  "m3": {
+   "start": 644,
+   "end": 651,
+   "startT": 21.466666666666665,
+   "endT": 21.7,
+   "block": "montage"
+  },
+  "m4": {
+   "start": 651,
+   "end": 658,
+   "startT": 21.7,
+   "endT": 21.933333333333334,
+   "block": "montage"
+  },
+  "m5": {
+   "start": 658,
+   "end": 665,
+   "startT": 21.933333333333334,
+   "endT": 22.166666666666668,
+   "block": "montage"
+  },
+  "m6": {
+   "start": 665,
+   "end": 672,
+   "startT": 22.166666666666668,
+   "endT": 22.4,
+   "block": "montage"
+  },
+  "m7": {
+   "start": 672,
+   "end": 679,
+   "startT": 22.4,
+   "endT": 22.633333333333333,
+   "block": "montage"
+  },
+  "m8": {
+   "start": 679,
+   "end": 686,
+   "startT": 22.633333333333333,
+   "endT": 22.866666666666667,
+   "block": "montage"
+  },
+  "tri": {
+   "start": 686,
+   "end": 768,
+   "startT": 22.866666666666667,
+   "endT": 25.6,
+   "block": "montage"
+  },
+  "ec": {
+   "start": 768,
+   "end": 900,
+   "startT": 25.6,
+   "endT": 30.0,
+   "block": "endcard"
+  }
+ }
+}
