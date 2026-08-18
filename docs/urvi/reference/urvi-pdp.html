@@ -1,0 +1,510 @@
+<title>URVI Brain Support Chews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap">
+
+<style>
+  :root{
+    --ink:#FFFFFF; --ink-2:#E2E9F3; --ink-3:#C3D0E2; --ink-4:#A9B8CE; --ink-5:#8FA3BE;
+    --blue:#2D7FF0; --blue-bar:#1F6FE0; --card:#111C2E; --card-sel:#0D2646;
+    --line:#2A3547; --rule:#22314A; --ground:#06101E;
+    --ui:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --display:'Archivo Narrow','Arial Narrow',Impact,var(--ui);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--ui); -webkit-font-smoothing:antialiased;
+    padding:24px 0 40px;
+  }
+  .outer{display:flex;justify-content:center;overflow:hidden;}
+  .wrap{width:1242px;height:848px;transform-origin:top center;flex:none;}
+
+  /* ---- frame ---- */
+  .frame{position:relative;width:1242px;height:848px;background:#000;overflow:hidden;}
+  .abs{position:absolute;}
+  .t{position:absolute;line-height:1.21;white-space:nowrap;}
+
+  .announce{left:0;top:88px;width:1242px;height:25px;background:var(--blue-bar);
+    display:flex;align-items:center;justify-content:center;}
+  .announce span{font-size:10.5px;font-weight:700;letter-spacing:.7px;color:#fff;}
+
+  .body{left:0;top:113px;width:1242px;height:735px;overflow:hidden;}
+  #bg{left:0;top:0;display:block;}
+  .wash{left:0;top:0;width:1242px;height:735px;opacity:.32;
+    background:linear-gradient(180deg,#0A1E38 0%,#071527 50%,#040C18 100%);}
+  .glow2{left:230px;top:150px;width:320px;height:300px;border-radius:50%;
+    background:#2A6BC4;filter:blur(90px);opacity:.26;}
+  .vignette{left:0;top:0;width:1242px;height:735px;
+    background:linear-gradient(90deg,rgba(3,9,15,0) 0%,rgba(3,9,15,.30) 46%,rgba(3,9,15,.66) 100%);}
+
+  /* ---- header ---- */
+  .wordmark{left:88px;top:12px;font-family:var(--display);font-weight:700;font-size:30px;
+    letter-spacing:-.5px;color:#fff;line-height:1.2;}
+  .wordmark-tm{left:146px;top:13px;font-size:8px;font-weight:500;color:#fff;}
+  .nav{left:443px;top:27px;transform:translateY(-50%);display:flex;gap:30px;align-items:center;}
+  .nav a{font-size:12.5px;font-weight:500;color:var(--ink-2);text-decoration:none;}
+  .nav a:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:2px;}
+
+  /* ---- thumbnails ---- */
+  .thumb{width:70px;height:66px;border-radius:8px;overflow:hidden;border:1px solid #26324A;}
+  .thumb.sel{border:2px solid #4E9BF5;}
+
+  /* ---- pouch ---- */
+  .pouch{left:85px;top:10px;width:250px;height:405px;overflow:hidden;
+    border-radius:6px 6px 14px 14px;transform:rotate(-.8deg);
+    background:linear-gradient(90deg,#6293E4 0%,#3866C6 42%,#1D3C8A 100%);
+    box-shadow:6px 22px 38px rgba(2,10,24,.55);}
+  .chew{position:absolute;box-shadow:2px 6px 10px rgba(18,6,10,.45);
+    background:linear-gradient(135deg,#F7A2AB 0%,#E4707D 50%,#B23B49 100%);}
+
+  /* ---- cards ---- */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;}
+  .card.sel{background:var(--card-sel);border:2px solid var(--blue);}
+
+  .cta{left:0;top:510px;width:313px;height:38px;border-radius:8px;background:var(--blue);
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    box-shadow:0 4px 12px rgba(23,92,191,.35);}
+  .cta span{font-size:14px;font-weight:600;color:#fff;}
+  .step{left:322px;top:510px;width:100px;height:38px;border-radius:8px;
+    background:var(--card);border:1px solid var(--line);}
+  .step div{position:absolute;top:50%;transform:translate(-50%,-50%);color:#DCE6F4;}
+
+  .caption{max-width:1242px;margin:22px auto 0;padding:0 24px;text-align:center;
+    font-size:12.5px;color:#5E7089;letter-spacing:.2px;}
+  .caption b{color:#8FA3BE;font-weight:500;}
+</style>
+
+<div class="outer" id="outer">
+<div class="wrap" id="wrap">
+<div class="frame">
+
+  <div class="announce abs"><span>FREE SHIPPING ON ALL ORDERS OVER $50</span></div>
+
+  <div class="body abs">
+    <canvas id="bg" class="abs" width="1242" height="735" aria-hidden="true"></canvas>
+    <div class="wash abs"></div>
+    <div class="glow2 abs"></div>
+    <div class="vignette abs"></div>
+
+    <!-- ================= HEADER ================= -->
+    <div class="t wordmark">URVI</div>
+    <div class="t wordmark-tm">&#174;</div>
+    <nav class="nav abs">
+      <a href="#">Shop</a><a href="#">Scores</a><a href="#">Ingredients</a><a href="#">About</a><a href="#">Reviews</a>
+    </nav>
+    <div class="abs" style="left:1072px;top:17px;">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M20 21v-1.8a4.2 4.2 0 0 0-4.2-4.2H8.2A4.2 4.2 0 0 0 4 19.2V21" stroke="#DCE6F4" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7.2" r="4.2" stroke="#DCE6F4" stroke-width="1.7"/></svg>
+    </div>
+    <div class="abs" style="left:1118px;top:16px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="9.5" cy="20" r="1.7" fill="#DCE6F4"/><circle cx="18.5" cy="20" r="1.7" fill="#DCE6F4"/><path d="M2.5 3.2h2.3l2.5 11.6a1.9 1.9 0 0 0 1.9 1.5h9a1.9 1.9 0 0 0 1.9-1.5L21.5 7.4H6" stroke="#DCE6F4" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="abs" style="left:15px;top:-1px;width:7px;height:7px;border-radius:50%;background:var(--blue);"></div>
+    </div>
+
+    <!-- ================= THUMBNAIL RAIL ================= -->
+    <div class="abs" style="left:89px;top:74px;display:flex;flex-direction:column;gap:9px;">
+
+      <div class="thumb sel" style="position:relative;background:linear-gradient(135deg,#16375F,#0A1B33);">
+        <div class="abs" style="left:23px;top:11px;width:24px;height:42px;border-radius:3px;background:linear-gradient(135deg,#7FA9EE,#2E5AAE);"></div>
+        <div class="abs" style="left:23px;top:11px;width:24px;height:5px;border-radius:2px;background:#9CC0F5;"></div>
+        <div class="abs" style="left:28px;top:21px;width:14px;height:3px;border-radius:1.5px;background:#EAF1FF;"></div>
+        <div class="abs" style="left:27px;top:28px;width:16px;height:2px;border-radius:1px;background:#DCE8FB;opacity:.75;"></div>
+        <div class="abs" style="left:39px;top:37px;width:9px;height:9px;border-radius:2.5px;background:#E3737E;transform:rotate(-12deg);"></div>
+      </div>
+
+      <div class="thumb" style="position:relative;background:linear-gradient(135deg,#1A2A44,#0B1526);">
+        <div class="abs" style="left:14px;top:22px;width:20px;height:18px;border-radius:5px;background:linear-gradient(135deg,#F0919A,#C84E5C);transform:rotate(14deg);"></div>
+        <div class="abs" style="left:33px;top:17px;width:21px;height:19px;border-radius:5px;background:linear-gradient(135deg,#F49AA3,#CE5361);transform:rotate(-10deg);"></div>
+        <div class="abs" style="left:26px;top:36px;width:22px;height:19px;border-radius:5px;background:linear-gradient(135deg,#E8848E,#B84450);transform:rotate(4deg);"></div>
+      </div>
+
+      <div class="thumb" style="position:relative;background:linear-gradient(135deg,#101D33,#070E1C);">
+        <div class="abs" style="left:20px;top:20px;width:30px;height:26px;border-radius:7px;background:linear-gradient(135deg,#F59BA4,#C74C5A);transform:rotate(6deg);"></div>
+      </div>
+
+      <div class="thumb" style="position:relative;background:linear-gradient(135deg,#16233D,#080D1A);">
+        <div class="abs" style="left:8px;top:26px;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#5E6FA8,#1B2242);"></div>
+        <div class="abs" style="left:27px;top:12px;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#6E7FBB,#222A50);"></div>
+        <div class="abs" style="left:40px;top:33px;width:23px;height:23px;border-radius:50%;background:linear-gradient(135deg,#54649B,#161C38);"></div>
+        <div class="abs" style="left:20px;top:44px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#4A5A8E,#131933);"></div>
+      </div>
+
+      <div class="thumb" style="position:relative;background:linear-gradient(135deg,#4A423A,#171310);">
+        <div class="abs" style="left:-6px;top:24px;width:60px;height:50px;border-radius:50%;background:linear-gradient(180deg,#F5EBDD,#B9A48A);"></div>
+        <div class="abs" style="left:30px;top:8px;width:44px;height:40px;border-radius:50%;background:linear-gradient(135deg,#FBF4E9,#C9B79C);"></div>
+        <div class="abs" style="left:44px;top:-4px;width:5px;height:34px;border-radius:2.5px;background:#D8D3CB;transform:rotate(-18deg);"></div>
+      </div>
+
+      <div class="thumb" style="position:relative;background:linear-gradient(135deg,#2A3320,#0C1108);">
+        <div class="abs" style="left:6px;top:30px;width:20px;height:15px;border-radius:50%;background:linear-gradient(135deg,#8FA85B,#3C4A20);transform:rotate(20deg);"></div>
+        <div class="abs" style="left:24px;top:16px;width:22px;height:16px;border-radius:50%;background:linear-gradient(135deg,#A2BB68,#455524);transform:rotate(-15deg);"></div>
+        <div class="abs" style="left:40px;top:36px;width:21px;height:15px;border-radius:50%;background:linear-gradient(135deg,#7C9450,#31401A);transform:rotate(8deg);"></div>
+        <div class="abs" style="left:18px;top:46px;width:18px;height:13px;border-radius:50%;background:linear-gradient(135deg,#93AC5F,#3A4A1E);transform:rotate(-6deg);"></div>
+      </div>
+    </div>
+
+    <!-- ================= PRODUCT STAGE ================= -->
+    <div class="abs" style="left:180px;top:62px;width:450px;height:480px;">
+
+      <div class="abs" style="left:62px;top:398px;width:300px;height:60px;border-radius:50%;background:#020914;filter:blur(40px);opacity:.7;"></div>
+
+      <div class="pouch abs">
+        <div class="abs" style="left:0;top:0;width:26px;height:405px;background:linear-gradient(90deg,rgba(207,224,250,.55),rgba(207,224,250,0));"></div>
+        <div class="abs" style="left:206px;top:0;width:44px;height:405px;background:linear-gradient(90deg,rgba(11,30,69,0),rgba(11,30,69,.6));"></div>
+        <div class="abs" style="left:0;top:0;width:250px;height:30px;background:linear-gradient(90deg,#8FB4F0,#4B78D4);"></div>
+        <div class="abs" style="left:0;top:30px;width:250px;height:1.5px;background:#12305F;opacity:.5;"></div>
+        <div class="abs" style="left:0;top:353px;width:250px;height:52px;background:linear-gradient(180deg,rgba(16,39,92,0),rgba(11,28,70,.85));"></div>
+
+        <div class="t" style="left:28px;top:11px;font-size:5px;letter-spacing:.4px;color:#0E2A5E;opacity:.75;">Origin Nord</div>
+        <div class="t" style="left:168px;top:11px;font-size:5px;letter-spacing:.4px;color:#0E2A5E;opacity:.75;">Enodrt 090</div>
+
+        <div class="t" style="left:34px;top:58px;font-family:var(--display);font-weight:700;font-size:83.2px;letter-spacing:-2px;color:#fff;line-height:1.2;">URVI</div>
+        <div class="t" style="left:32px;top:186px;font-size:31.1px;font-weight:300;font-style:italic;color:#fff;">Brain Support</div>
+        <div class="t" style="left:234px;top:188px;font-size:11px;font-weight:300;color:#fff;opacity:.9;">&#174;</div>
+
+        <div class="t" style="left:90px;top:264px;font-size:16.5px;font-weight:300;color:#fff;opacity:.95;">L-Tyro&#244;ne</div>
+        <div class="t" style="left:70px;top:299px;font-size:16.5px;font-weight:300;color:#fff;opacity:.85;">+</div>
+        <div class="t" style="left:90px;top:299px;font-size:16.5px;font-weight:300;color:#fff;opacity:.95;">Acetyl-L-Carnitine</div>
+        <div class="t" style="left:90px;top:334px;font-size:16.5px;font-weight:300;color:#fff;opacity:.95;">Coffeine</div>
+
+        <div class="t" style="left:58px;top:366px;font-size:5.5px;font-weight:500;letter-spacing:.9px;color:#CBDCF8;opacity:.55;">DIETITIAN MADE SUPPLEMENT CERTIFIED</div>
+        <div class="t" style="left:44px;top:388px;font-size:5.5px;font-weight:500;letter-spacing:.9px;color:#CBDCF8;opacity:.45;">SUPPLEMENT</div>
+        <div class="t" style="left:150px;top:388px;font-size:5.5px;font-weight:500;letter-spacing:.9px;color:#CBDCF8;opacity:.45;">BRAIN ASSIST</div>
+
+        <div class="abs" style="left:218px;top:358px;width:15px;height:15px;border-radius:50%;border:1px solid #CBDCF8;opacity:.55;"></div>
+      </div>
+
+      <div class="chew" style="left:248px;top:163px;width:31px;height:26.7px;border-radius:8.1px;transform:rotate(12deg);"></div>
+      <div class="chew" style="left:280px;top:224px;width:44px;height:37.8px;border-radius:11.4px;transform:rotate(-8deg);"></div>
+      <div class="chew" style="left:324px;top:292px;width:46px;height:39.6px;border-radius:12px;transform:rotate(6deg);"></div>
+      <div class="chew" style="left:312px;top:372px;width:45px;height:38.7px;border-radius:11.7px;transform:rotate(-14deg);"></div>
+      <div class="chew" style="left:355px;top:381px;width:39px;height:33.5px;border-radius:10.1px;transform:rotate(9deg);"></div>
+    </div>
+
+    <!-- ================= BENEFITS / TRUST ================= -->
+    <div class="abs" style="left:70px;top:532px;width:558px;height:1px;background:var(--rule);opacity:.9;"></div>
+    <div class="abs" style="left:70px;top:614px;width:558px;height:1px;background:var(--rule);opacity:.9;"></div>
+
+    <div class="abs" style="left:70px;top:545px;width:558px;height:60px;" id="benefits"></div>
+    <div class="abs" style="left:70px;top:630px;width:558px;height:22px;" id="trust"></div>
+    <div class="abs" style="left:262px;top:633px;width:1px;height:14px;background:#31425C;"></div>
+    <div class="abs" style="left:456px;top:633px;width:1px;height:14px;background:#31425C;"></div>
+
+    <!-- ================= RIGHT COLUMN ================= -->
+    <div class="abs" style="left:667px;top:82px;width:422px;height:560px;">
+
+      <div class="t" style="left:0;top:-8px;font-family:var(--display);font-weight:700;font-size:38.7px;letter-spacing:-.3px;color:#fff;line-height:1.2;">URVI Brain Support Chews</div>
+      <div class="t" style="left:1px;top:40px;font-size:14.5px;color:var(--ink-4);">Daily focus, clarity, and mental energy.</div>
+
+      <div class="abs" style="left:0;top:71px;width:422px;height:16px;" id="pills"></div>
+
+      <div class="t" style="left:0;top:109px;font-size:13.5px;font-weight:600;color:#fff;">1. Choose Your Supply</div>
+      <div id="supply"></div>
+      <div class="abs" style="left:329px;top:123px;width:54px;height:14px;border-radius:7px;background:var(--blue);display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:8px;font-weight:600;color:#fff;">Save 18%</span>
+      </div>
+
+      <div class="t" style="left:0;top:245px;font-size:13.5px;font-weight:600;color:#fff;">2. Choose Your Flavor</div>
+      <div id="flavors"></div>
+
+      <div class="t" style="left:0;top:365px;font-size:13.5px;font-weight:600;color:#fff;">3.&nbsp; And More to Your Flavor</div>
+      <div id="addons"></div>
+
+      <div class="cta abs">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="9.5" cy="20" r="1.7" fill="#fff"/><circle cx="18.5" cy="20" r="1.7" fill="#fff"/><path d="M2.5 3.2h2.3l2.5 11.6a1.9 1.9 0 0 0 1.9 1.5h9a1.9 1.9 0 0 0 1.9-1.5L21.5 7.4H6" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Add to Cart - $49.00</span>
+      </div>
+      <div class="step abs">
+        <div style="left:21px;font-size:15px;">&#8722;</div>
+        <div style="left:50px;font-size:13px;">1</div>
+        <div style="left:79px;font-size:15px;">+</div>
+      </div>
+    </div>
+
+    <div class="abs" style="left:1168px;top:661px;opacity:.62;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 1.6c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5Z" fill="#94A6BE"/></svg>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+
+<p class="caption"><b>URVI Brain Support Chews</b> &middot; product detail page &middot; 1242 &times; 848</p>
+
+<script>
+(function(){
+  var S = 'http://www.w3.org/2000/svg';
+  function el(html){ var d=document.createElement('div'); d.innerHTML=html.trim(); return d.firstChild; }
+
+  /* ---------- benefits strip ---------- */
+  var bGlyphs = [
+    '<circle cx="12" cy="12" r="9.2" stroke="#C6D4E6" stroke-width="1.3"/><circle cx="12" cy="12" r="4.4" stroke="#C6D4E6" stroke-width="1.3"/><circle cx="12" cy="12" r="1.5" fill="#C6D4E6"/>',
+    '<circle cx="12" cy="12" r="9.2" stroke="#C6D4E6" stroke-width="1.3"/><path d="M12 6.4c2.4 2.7 3.7 4.6 3.7 6.3a3.7 3.7 0 1 1-7.4 0c0-1.7 1.3-3.6 3.7-6.3Z" stroke="#C6D4E6" stroke-width="1.3" stroke-linejoin="round"/>',
+    '<circle cx="12" cy="12" r="9.2" stroke="#C6D4E6" stroke-width="1.3"/><circle cx="8.6" cy="12" r="2.7" stroke="#C6D4E6" stroke-width="1.3"/><circle cx="15.4" cy="12" r="2.7" stroke="#C6D4E6" stroke-width="1.3"/><path d="M11.3 12h1.4" stroke="#C6D4E6" stroke-width="1.3"/>',
+    '<circle cx="12" cy="12" r="9.2" stroke="#C6D4E6" stroke-width="1.3"/><path d="M12 6.6c2.9 1.9 4.6 3.6 4.6 6a4.6 4.6 0 0 1-9.2 0c0-2.4 1.7-4.1 4.6-6Z" stroke="#C6D4E6" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 10v5" stroke="#C6D4E6" stroke-width="1.3" stroke-linecap="round"/>'
+  ];
+  var benefits = [
+    [9,   'Support Feerth Wards',  "Ounteror losoen't asocen Ploo", 'Gen Bnnring Gyotemin'],
+    [154, 'Cenxina Favers Enssj',  'Coumeoentiruoise Fur an its',   'Cerine Enve Fael'],
+    [287, 'Dusartamental Bagreci', 'Cirefousemt inaognnan',         'Enved Dart povoaerinon'],
+    [424, 'Toms &amp; L4ts Canoidy',   'Copuprilgun gulla ternners olen','Glorea Bnm aordpri gracittpsm']
+  ];
+  var bh = '';
+  benefits.forEach(function(b,i){
+    bh += '<div class="abs" style="left:'+b[0]+'px;top:3px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none">'+bGlyphs[i]+'</svg></div>'
+       +  '<div class="t" style="left:'+(b[0]+29)+'px;top:2px;font-size:8px;font-weight:700;letter-spacing:.1px;color:#E8EEF7;">'+b[1]+'</div>'
+       +  '<div class="t" style="left:'+(b[0]+29)+'px;top:14.5px;font-size:6.5px;letter-spacing:.1px;color:#8497B0;">'+b[2]+'</div>'
+       +  '<div class="t" style="left:'+(b[0]+29)+'px;top:23.5px;font-size:6.5px;letter-spacing:.1px;color:#8497B0;">'+b[3]+'</div>';
+  });
+  document.getElementById('benefits').innerHTML = bh;
+
+  /* ---------- trust bar ---------- */
+  var tGlyphs = [
+    '<circle cx="12" cy="12" r="9.2" stroke="#C6D4E6" stroke-width="1.5"/><path d="M12 7v5.2l3.4 2" stroke="#C6D4E6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+    '<rect x="4.6" y="10.4" width="14.8" height="10" rx="2.2" stroke="#C6D4E6" stroke-width="1.5"/><path d="M8.2 10.2V7.8a3.8 3.8 0 0 1 7.6 0v2.4" stroke="#C6D4E6" stroke-width="1.5" stroke-linecap="round"/>',
+    '<path d="M20.4 14.2a2.6 2.6 0 0 1-2.6 2.6H8.4L4.2 20V6.6A2.6 2.6 0 0 1 6.8 4h11a2.6 2.6 0 0 1 2.6 2.6v7.6Z" stroke="#C6D4E6" stroke-width="1.5" stroke-linejoin="round"/>'
+  ];
+  var trust = [[0,'30-Day Money Back Guarantee'],[232,'Secure Checkout'],[426,'Direct Support']];
+  var th = '';
+  trust.forEach(function(t,i){
+    th += '<div class="abs" style="left:'+t[0]+'px;top:2px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none">'+tGlyphs[i]+'</svg></div>'
+       +  '<div class="t" style="left:'+(t[0]+24)+'px;top:4.5px;font-size:9px;letter-spacing:.05px;color:#C4D0E0;">'+t[1]+'</div>';
+  });
+  document.getElementById('trust').innerHTML = th;
+
+  /* ---------- benefit pills ---------- */
+  var pGlyphs = [
+    '<circle cx="12" cy="12" r="9.4" stroke="#BCCBDF" stroke-width="1.7"/><circle cx="12" cy="12" r="4" stroke="#BCCBDF" stroke-width="1.7"/><path d="M12 2.6v3.4M12 18v3.4" stroke="#BCCBDF" stroke-width="1.7" stroke-linecap="round"/>',
+    '<path d="M13.6 2.4 4.5 13.7h6.2l-1.3 8 9.1-11.3h-6.2l1.3-8Z" stroke="#BCCBDF" stroke-width="1.7" stroke-linejoin="round"/>',
+    '<circle cx="12" cy="12" r="9.4" stroke="#BCCBDF" stroke-width="1.7"/><path d="M7.6 12h8.8" stroke="#BCCBDF" stroke-width="1.7" stroke-linecap="round"/>'
+  ];
+  var pills = [[0,'Improve Focs &amp; Comy&#8482;'],[145,'Enhance Mental Clarity*'],[288,'Boost Daily Energy']];
+  var ph = '';
+  pills.forEach(function(p,i){
+    ph += '<div class="abs" style="left:'+p[0]+'px;top:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none">'+pGlyphs[i]+'</svg></div>'
+       +  '<div class="t" style="left:'+(p[0]+20)+'px;top:1.5px;font-size:10.5px;letter-spacing:.05px;color:#C3D0E2;">'+p[1]+'</div>';
+  });
+  document.getElementById('pills').innerHTML = ph;
+
+  /* ---------- supply options ---------- */
+  var supply = [
+    [0,   '1 Pouch',   '1 Pouch / 30 Servings',   '$49.90',  'Subscribe to Save', true],
+    [145, '3 Moeths',  '3 Pouches / 90 Servings', '$120.20', 'Save 10%',  false],
+    [290, '0 Ruistna', '6 Pouches / 180 Servings','$229.90', 'Save 18%',  false]
+  ];
+  var sh = '';
+  supply.forEach(function(s){
+    sh += '<div class="card abs'+(s[5]?' sel':'')+'" style="left:'+s[0]+'px;top:131px;width:132px;height:98px;">'
+       +  '<div class="t" style="left:12px;top:12px;font-size:12.5px;font-weight:600;color:#fff;">'+s[1]+'</div>'
+       +  '<div class="t" style="left:12px;top:31px;font-size:8.5px;color:#8FA3BE;">'+s[2]+'</div>'
+       +  '<div class="t" style="left:12px;top:56px;font-size:15px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;">'+s[3]+'</div>'
+       +  '<div class="t" style="left:12px;top:78px;font-size:8.5px;color:#8FA3BE;">'+s[4]+'</div>'
+       +  (s[5]?'<div class="abs" style="left:104px;top:11px;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#2D7FF0"/><path d="m4.7 8.2 2.2 2.2 4.4-4.6" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>':'')
+       +  '</div>';
+  });
+  document.getElementById('supply').innerHTML = sh;
+
+  /* ---------- flavors ---------- */
+  var flavors = [
+    [0,    'Original Berry','#F49AA3','#C74C5A', true],
+    [107.5,'Onigberry',     '#DAD5E8','#A9A2C4', false],
+    [215,  'Cleoo',         '#F8D57C','#E0A32F', false],
+    [322.5,'Noanrartaco',   '#EE8272','#C13F31', false]
+  ];
+  var fh = '';
+  flavors.forEach(function(f){
+    fh += '<div class="card abs'+(f[4]?' sel':'')+'" style="left:'+f[0]+'px;top:273px;width:99px;height:70px;">'
+       +  '<div class="abs" style="left:26.5px;top:11px;width:46px;height:34px;border-radius:11px;background:linear-gradient(135deg,'+f[2]+','+f[3]+');"></div>'
+       +  '<div class="abs" style="left:0;top:51px;width:99px;text-align:center;font-size:8.5px;line-height:1.21;color:#C3D0E2;">'+f[1]+'</div>'
+       +  (f[4]?'<div class="abs" style="left:83px;top:5px;width:9px;height:9px;border-radius:50%;background:#2D7FF0;"></div>':'')
+       +  '</div>';
+  });
+  document.getElementById('flavors').innerHTML = fh;
+
+  /* ---------- add-ons ---------- */
+  function art(kind){
+    var r = function(l,t,w,h,rad,a,b){
+      return '<div class="abs" style="left:'+l+'px;top:'+t+'px;width:'+w+'px;height:'+h+'px;border-radius:'+rad+'px;background:linear-gradient(135deg,'+a+','+b+');"></div>';
+    };
+    if(kind==='box') return r(0,6,26,46,2,'#5C8FE0','#1E3E86')+r(4,14,17,3,1.5,'#EAF1FF','#C7D9F7')+r(4,21,13,2,1,'#B9CDEE','#8FA9D6')+r(23,16,20,40,3,'#39424E','#12161D')+r(27,23,12,2.5,1.2,'#98A6B8','#6C7A8C');
+    if(kind==='bottle') return r(17,0,9,9,1.5,'#4A5462','#232A33')+r(13,8,17,48,3,'#3B4450','#0F1319')+r(16,22,11,13,1.5,'#B9C4D2','#7C8898');
+    return r(13,2,21,54,5,'#414B58','#13181F')+r(13,2,21,8,4,'#5A6674','#39424E')+r(17,24,13,3,1.5,'#C3CDDA','#8E9AAA');
+  }
+  var addons = [
+    [0,  'Divepy Targerst Bumds','',            '$29.00','Excto Oithe','box'],
+    [144,'Deers Serry',          '7 bems',      '$10.00','Save',       'bottle'],
+    [288,'Ginlg Goamste',        '&#9744;&nbsp; Bukitts','$24.00','Sova','tube']
+  ];
+  var ah = '';
+  addons.forEach(function(a){
+    ah += '<div class="card abs" style="left:'+a[0]+'px;top:393px;width:134px;height:100px;overflow:hidden;">'
+       +  '<div class="abs" style="left:11px;top:10px;width:74px;font-size:9.5px;font-weight:600;line-height:13px;color:#fff;">'+a[1]+'</div>'
+       +  '<div class="abs" style="left:11px;top:36px;width:74px;font-size:7.5px;line-height:10px;color:#8FA3BE;">'+a[2]+'</div>'
+       +  '<div class="t" style="left:11px;top:62px;font-size:11.5px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;">'+a[3]+'</div>'
+       +  '<div class="t" style="left:11px;top:79px;font-size:7.5px;color:#8FA3BE;">'+a[4]+'</div>'
+       +  '<div class="abs" style="left:112px;top:10px;width:11px;height:11px;border-radius:2.5px;border:1.2px solid #5A6A83;"></div>'
+       +  '<div class="abs" style="left:80px;top:34px;width:48px;height:58px;">'+art(a[5])+'</div>'
+       +  '</div>';
+  });
+  document.getElementById('addons').innerHTML = ah;
+
+  /* ---------- flowing ribbon field ---------- */
+  (function(){
+    var cv = document.getElementById('bg');
+    if(!cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d');
+    var W = 1242, H = 735, TAU = Math.PI*2;
+    var dpr = Math.min(1.5, window.devicePixelRatio || 1);
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    cv.style.width = W+'px'; cv.style.height = H+'px';
+    ctx.scale(dpr, dpr);
+
+    /* falloff to the right so the purchase panel keeps a calm ground */
+    function fade(x){
+      if(x < 620) return 1;
+      if(x > 1160) return 0.10;
+      var u = (x-620)/540;
+      return 1 - 0.90*u*u;
+    }
+
+    var ribbons = [
+      {cy:300,a1:96, k1:.0052,w1:.00042,a2:34,k2:.0113,w2:.00071,ph:0.0,
+       th:150,tk:.0043,tw:.00033,top:'150,215,255',bot:'30,90,190',al:.16,mesh:true, crest:.95},
+      {cy:250,a1:78, k1:.0061,w1:.00055,a2:26,k2:.0139,w2:.00048,ph:1.9,
+       th:90, tk:.0051,tw:.00041,top:'120,195,255',bot:'24,72,165',al:.13,mesh:false,crest:.85},
+      {cy:395,a1:112,k1:.0044,w1:.00036,a2:40,k2:.0097,w2:.00062,ph:3.4,
+       th:120,tk:.0038,tw:.00029,top:'96,175,245', bot:'18,58,140',al:.12,mesh:false,crest:.70},
+      {cy:200,a1:64, k1:.0072,w1:.00049,a2:22,k2:.0158,w2:.00080,ph:5.1,
+       th:60, tk:.0064,tw:.00052,top:'140,205,255',bot:'26,80,175',al:.09,mesh:false,crest:.55},
+      {cy:470,a1:88, k1:.0057,w1:.00031,a2:30,k2:.0121,w2:.00044,ph:2.4,
+       th:80, tk:.0046,tw:.00037,top:'80,160,235', bot:'14,46,120',al:.10,mesh:false,crest:.45}
+    ];
+
+    function waveY(r,x,t){
+      return r.cy + r.a1*Math.sin(x*r.k1 + t*r.w1 + r.ph)
+                  + r.a2*Math.sin(x*r.k2 - t*r.w2 + r.ph*1.7);
+    }
+    function band(r,x,t){
+      return r.th * (0.40 + 0.60*Math.abs(Math.sin(x*r.tk + t*r.tw + r.ph)));
+    }
+
+    var bokeh = [
+      {x:1090,y:330,r:52,a:.070,fx:.00011,fy:.00017,ax:26,ay:20},
+      {x:760, y:250,r:30,a:.055,fx:.00016,fy:.00012,ax:22,ay:26},
+      {x:300, y:560,r:66,a:.045,fx:.00009,fy:.00014,ax:30,ay:18}
+    ];
+
+    var STEP = 6;
+
+    function frame(t){
+      ctx.globalCompositeOperation = 'source-over';
+      var g = ctx.createLinearGradient(0,0,W*0.55,H);
+      g.addColorStop(0,'#071A33'); g.addColorStop(0.5,'#040F21'); g.addColorStop(1,'#02070F');
+      ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+
+      ctx.globalCompositeOperation = 'lighter';
+
+      for(var i=0;i<bokeh.length;i++){
+        var b = bokeh[i];
+        var bx = b.x + Math.sin(t*b.fx+i)*b.ax, by = b.y + Math.cos(t*b.fy+i)*b.ay;
+        var bf = b.a * fade(bx);
+        var bg = ctx.createRadialGradient(bx,by,0,bx,by,b.r);
+        bg.addColorStop(0,   'rgba(120,185,255,'+bf.toFixed(3)+')');
+        bg.addColorStop(0.7, 'rgba(90,150,230,'+(bf*0.5).toFixed(3)+')');
+        bg.addColorStop(1,   'rgba(90,150,230,0)');
+        ctx.fillStyle = bg; ctx.beginPath(); ctx.arc(bx,by,b.r,0,TAU); ctx.fill();
+      }
+
+      for(var ri=ribbons.length-1; ri>=0; ri--){
+        var r = ribbons[ri], x, y;
+
+        /* translucent body */
+        ctx.beginPath();
+        for(x=0;x<=W;x+=STEP){ y=waveY(r,x,t); if(x===0)ctx.moveTo(x,y); else ctx.lineTo(x,y); }
+        for(x=W;x>=0;x-=STEP){ ctx.lineTo(x, waveY(r,x,t)+band(r,x,t)); }
+        ctx.closePath();
+        var lg = ctx.createLinearGradient(0, r.cy-r.a1-40, 0, r.cy+r.a1+r.th+40);
+        lg.addColorStop(0,'rgba('+r.top+','+r.al.toFixed(3)+')');
+        lg.addColorStop(1,'rgba('+r.bot+',0)');
+        ctx.fillStyle = lg; ctx.fill();
+
+        /* halftone mesh across the lead surface */
+        if(r.mesh){
+          var ROWS = 16;
+          for(var mx=0; mx<=W; mx+=5){
+            var f = fade(mx); if(f < 0.04) continue;
+            var y0 = waveY(r,mx,t), h = band(r,mx,t);
+            for(var q=0;q<ROWS;q++){
+              var v = q/(ROWS-1);
+              var a = 0.30*Math.pow(1-v,1.5)*f;
+              if(a < 0.012) continue;
+              ctx.fillStyle = 'rgba(130,200,255,'+a.toFixed(3)+')';
+              ctx.fillRect(mx + (q&1 ? 2.5 : 0), y0 + v*h, 1.15, 1.15);
+            }
+          }
+        }
+
+        /* glowing crest — three passes fake a bloom without shadowBlur */
+        var passes = [[10,0.05],[4.5,0.10],[1.35,0.80]];
+        for(var pi=0;pi<passes.length;pi++){
+          ctx.lineWidth = passes[pi][0];
+          ctx.strokeStyle = 'rgba(175,225,255,'+(passes[pi][1]*r.crest).toFixed(3)+')';
+          ctx.beginPath();
+          var started = false;
+          for(var cx=0;cx<=W;cx+=STEP){
+            if(fade(cx) < 0.06){ started = false; continue; }
+            var cyv = waveY(r,cx,t);
+            if(!started){ ctx.moveTo(cx,cyv); started = true; } else ctx.lineTo(cx,cyv);
+          }
+          ctx.stroke();
+        }
+      }
+
+      /* travelling highlights riding the lead crest */
+      var lead = ribbons[0];
+      for(var s=0;s<3;s++){
+        var hx = ((t*0.028 + s*430) % (W+240)) - 120;
+        if(hx < -20 || hx > W+20) continue;
+        var hy = waveY(lead,hx,t), hf = fade(hx);
+        var hg = ctx.createRadialGradient(hx,hy,0,hx,hy,26);
+        hg.addColorStop(0,    'rgba(225,245,255,'+(0.55*hf).toFixed(3)+')');
+        hg.addColorStop(0.35, 'rgba(140,205,255,'+(0.18*hf).toFixed(3)+')');
+        hg.addColorStop(1,    'rgba(140,205,255,0)');
+        ctx.fillStyle = hg; ctx.beginPath(); ctx.arc(hx,hy,26,0,TAU); ctx.fill();
+        ctx.fillStyle = 'rgba(255,255,255,'+(0.85*hf).toFixed(3)+')';
+        ctx.beginPath(); ctx.arc(hx,hy,1.7,0,TAU); ctx.fill();
+      }
+
+      ctx.globalCompositeOperation = 'source-over';
+    }
+
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      frame(0);
+      return;
+    }
+    var raf, last = 0;
+    function loop(now){
+      raf = requestAnimationFrame(loop);
+      if(now - last < 33) return;
+      last = now;
+      frame(now);
+    }
+    raf = requestAnimationFrame(loop);
+    document.addEventListener('visibilitychange', function(){
+      if(document.hidden){ cancelAnimationFrame(raf); }
+      else { last = 0; raf = requestAnimationFrame(loop); }
+    });
+  })();
+
+  /* ---------- fit to viewport, exact geometry preserved ---------- */
+  var wrap = document.getElementById('wrap'), outer = document.getElementById('outer');
+  function fit(){
+    var s = Math.min(1, (window.innerWidth - 32) / 1242);
+    wrap.style.transform = 'scale(' + s + ')';
+    outer.style.height = Math.ceil(848 * s) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+})();
+</script>
