@@ -1,0 +1,536 @@
+<title>URVI Landing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap">
+
+<style>
+:root{
+  --brand:#2D7FF0; --brand-hi:#4E9BF5; --mint:#31D0A5;
+  --surface:#111C2E; --surface-2:#0D2646; --line:#2A3547;
+  --fg:#fff; --fg-2:#C3D0E2; --fg-3:#A9B8CE; --fg-4:#8FA3BE;
+  --ground:#04101F;
+  --ui:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --display:'Archivo Narrow','Arial Narrow',sans-serif;
+
+  /* Motion. Short, ease-out, transform+opacity+filter only.
+     --ease is the Vaul curve: strong front-load, long tail settle. */
+  --ease:cubic-bezier(0.32,0.72,0,1);
+  --d-press:80ms;    /* press feedback — must feel instant  */
+  --d-micro:150ms;   /* hover / colour                      */
+  --d-enter:400ms;   /* content entering the viewport       */
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--ground);color:var(--fg);font-family:var(--ui);-webkit-font-smoothing:antialiased;overflow:hidden;}
+
+/* ---------- fixed layers ---------- */
+#field{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block;}
+#veil{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 80% at 50% 40%,rgba(4,16,31,0) 0%,rgba(4,16,31,.55) 70%,rgba(4,16,31,.88) 100%);}
+
+/* ---------- nav ---------- */
+nav{position:fixed;z-index:40;left:50%;top:18px;transform:translateX(-50%);
+  display:flex;align-items:center;gap:26px;
+  padding:9px 10px 9px 20px;border-radius:999px;
+  background:rgba(9,20,36,.72);backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 8px 32px rgba(0,0,0,.4);max-width:calc(100vw - 24px);}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;
+  font-size:17px;letter-spacing:.4px;white-space:nowrap;}
+.brand svg{flex:none;}
+.navlinks{display:flex;gap:20px;}
+.navlinks a{position:relative;font-size:12.5px;font-weight:500;color:var(--fg-2);text-decoration:none;
+  padding:4px 2px;transition:color var(--d-micro) var(--ease);white-space:nowrap;}
+.navlinks a:hover,.navlinks a.on{color:#fff;}
+.navlinks a.on::after{content:"";position:absolute;left:50%;bottom:-3px;width:4px;height:4px;
+  margin-left:-2px;border-radius:50%;background:var(--mint);}
+.navcta{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:999px;
+  background:var(--mint);color:#052a20;font-size:12.5px;font-weight:700;text-decoration:none;
+  transition:transform var(--d-micro) var(--ease),background-color var(--d-micro) var(--ease);white-space:nowrap;}
+.navcta:hover{transform:translateY(-1px);background:#3FE0B4;}
+.navcta:active{transform:translateY(0) scale(.97);transition-duration:var(--d-press);}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:6px;}
+
+/* ---------- product ---------- */
+#product{position:fixed;z-index:5;right:11vw;top:50%;width:300px;height:470px;
+  margin-top:-235px;will-change:transform,opacity;pointer-events:none;}
+.pouch{position:absolute;inset:0;border-radius:9px 9px 20px 20px;overflow:hidden;
+  background:linear-gradient(90deg,#6293E4 0%,#3866C6 42%,#1D3C8A 100%);
+  box-shadow:14px 34px 70px rgba(2,10,24,.6),0 0 90px rgba(45,127,240,.22);}
+.pouch .seal{position:absolute;left:0;top:0;width:100%;height:34px;
+  background:linear-gradient(90deg,#8FB4F0,#4B78D4);}
+.pouch .sheenL{position:absolute;left:0;top:0;width:16%;height:100%;
+  background:linear-gradient(90deg,rgba(207,224,250,.55),rgba(207,224,250,0));}
+.pouch .sheenR{position:absolute;right:0;top:0;width:22%;height:100%;
+  background:linear-gradient(270deg,rgba(11,30,69,.6),rgba(11,30,69,0));}
+.pouch .wm{position:absolute;left:12%;top:14%;font-family:var(--display);font-weight:700;
+  font-size:86px;line-height:1;letter-spacing:-2.5px;color:#fff;}
+.pouch .bs{position:absolute;left:11.5%;top:45%;font-size:31px;font-weight:300;font-style:italic;color:#fff;}
+.pouch .ing{position:absolute;left:26%;font-size:16.5px;font-weight:300;color:rgba(255,255,255,.95);}
+.pouch .fine{position:absolute;left:0;width:100%;text-align:center;font-size:6.5px;
+  font-weight:500;letter-spacing:1.1px;color:rgba(203,220,248,.5);}
+.chew{position:absolute;border-radius:28%;
+  background:linear-gradient(135deg,#F7A2AB,#E4707D 52%,#B23B49);
+  box-shadow:3px 8px 16px rgba(18,6,10,.45);}
+
+/* ---------- scroller ---------- */
+#scroller{position:relative;z-index:10;height:100vh;overflow-y:scroll;
+  scroll-snap-type:y mandatory;scrollbar-width:none;}
+#scroller::-webkit-scrollbar{display:none;}
+section{height:100vh;scroll-snap-align:start;scroll-snap-stop:always;
+  display:flex;align-items:center;position:relative;}
+.wrap{width:min(1240px,90vw);margin:0 auto;padding:0 8px;}
+.col{max-width:560px;}
+
+/* reveal */
+.r{opacity:0;transform:translateY(12px);filter:blur(4px);
+  transition:opacity var(--d-enter) var(--ease),transform var(--d-enter) var(--ease),filter var(--d-enter) var(--ease);}
+.on .r{opacity:1;transform:none;filter:blur(0);}
+.on .r.d1{transition-delay:50ms}  .on .r.d2{transition-delay:100ms}
+.on .r.d3{transition-delay:150ms} .on .r.d4{transition-delay:200ms}
+.on .r.d5{transition-delay:250ms}
+.rl{opacity:0;transform:translateX(-20px);filter:blur(4px);
+  transition:opacity var(--d-enter) var(--ease),transform var(--d-enter) var(--ease),filter var(--d-enter) var(--ease);}
+.on .rl{opacity:1;transform:none;filter:blur(0);}
+
+/* type */
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:6px 13px 6px 8px;border-radius:999px;
+  background:rgba(45,127,240,.13);border:1px solid rgba(78,155,245,.3);
+  font-size:12px;font-weight:600;letter-spacing:.5px;color:#BBD6FA;margin-bottom:22px;}
+.eyebrow b{background:var(--mint);color:#052a20;padding:2px 7px;border-radius:999px;font-size:12px;letter-spacing:.7px;}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(38px,5.4vw,68px);line-height:1.03;
+  letter-spacing:-1px;text-wrap:balance;}
+h1 em{display:block;font-family:var(--ui);font-style:italic;font-weight:300;letter-spacing:-.5px;}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,3.6vw,46px);line-height:1.08;
+  letter-spacing:-.6px;text-wrap:balance;}
+.lede{margin-top:20px;font-size:15.5px;line-height:1.62;color:var(--fg-3);max-width:44ch;}
+.kicker{font-size:12px;font-weight:700;letter-spacing:2.2px;color:var(--mint);margin-bottom:16px;}
+
+.btn{display:inline-flex;align-items:center;gap:9px;margin-top:30px;padding:14px 26px;border-radius:999px;
+  background:var(--mint);color:#052a20;font-size:14px;font-weight:700;text-decoration:none;border:0;cursor:pointer;
+  transition:transform var(--d-micro) var(--ease),box-shadow var(--d-micro) var(--ease),background-color var(--d-micro) var(--ease);
+  box-shadow:0 10px 30px rgba(49,208,165,.24);font-variant-numeric:tabular-nums;}
+.btn:hover{transform:translateY(-2px);background:#3FE0B4;box-shadow:0 14px 38px rgba(49,208,165,.34);}
+.btn:active{transform:translateY(0) scale(.985);box-shadow:0 4px 12px rgba(49,208,165,.2);
+  transition-duration:var(--d-press);}
+.btn.alt:hover{background:var(--brand-hi);}
+.btn.alt:active{box-shadow:0 4px 12px rgba(45,127,240,.24);}
+.btn.alt{background:var(--brand);color:#fff;box-shadow:0 10px 30px rgba(45,127,240,.3);}
+
+.ticks{display:flex;gap:26px;margin-top:26px;flex-wrap:wrap;}
+.tick{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--fg-2);}
+.tick i{display:grid;place-content:center;width:15px;height:15px;border-radius:50%;
+  background:rgba(49,208,165,.16);border:1px solid rgba(49,208,165,.45);font-style:normal;
+  font-size:9px;color:var(--mint);}
+
+/* cards */
+.cards{display:flex;flex-direction:column;gap:13px;max-width:400px;}
+.card{padding:19px 21px;border-radius:15px;border:1px solid rgba(255,255,255,.09);
+  background:linear-gradient(135deg,rgba(17,32,54,.82),rgba(10,21,38,.62));
+  backdrop-filter:blur(9px);transition:border-color var(--d-micro) var(--ease),transform var(--d-micro) var(--ease);}
+.card:hover{border-color:rgba(78,155,245,.42);transform:translateX(4px);}
+.card h3{font-size:15.5px;font-weight:700;color:var(--mint);margin-bottom:7px;}
+.card p{font-size:12.5px;line-height:1.58;color:var(--fg-4);}
+
+.stats{display:flex;gap:13px;flex-wrap:wrap;margin-top:34px;}
+.stat{padding:16px 24px;border-radius:14px;border:1px solid rgba(255,255,255,.1);
+  background:rgba(13,26,46,.6);backdrop-filter:blur(9px);min-width:126px;}
+.stat b{display:block;font-family:var(--display);font-size:31px;font-weight:700;letter-spacing:-.5px;
+  font-variant-numeric:tabular-nums;}
+.stat span{font-size:12px;color:var(--fg-4);letter-spacing:.3px;}
+
+.acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:38px;max-width:760px;}
+.act{padding:22px;border-radius:16px;border:1px solid rgba(255,255,255,.09);
+  background:linear-gradient(150deg,rgba(17,32,54,.8),rgba(9,19,35,.55));backdrop-filter:blur(9px);}
+.act .dose{font-family:var(--display);font-size:26px;font-weight:700;color:var(--brand-hi);letter-spacing:-.4px;
+  font-variant-numeric:tabular-nums;}
+.act h4{margin:7px 0 6px;font-size:14px;font-weight:600;}
+.act p{font-size:12px;line-height:1.55;color:var(--fg-4);}
+
+.flavors{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+.fl{width:132px;padding:16px 14px 15px;border-radius:15px;text-align:center;
+  border:1px solid rgba(255,255,255,.09);background:rgba(13,26,46,.55);backdrop-filter:blur(9px);
+  transition:transform var(--d-micro) var(--ease),border-color var(--d-micro) var(--ease);cursor:pointer;color:inherit;font-family:inherit;}
+.fl:hover{transform:translateY(-4px);border-color:rgba(78,155,245,.45);}
+.fl:active{transform:translateY(-1px) scale(.985);transition-duration:var(--d-press);}
+.fl[aria-checked="true"]{border-color:var(--mint);}
+.fl .sw{height:54px;border-radius:13px;margin-bottom:11px;}
+.fl b{font-size:12.5px;font-weight:600;}
+.fl span{display:block;margin-top:3px;font-size:12px;color:var(--fg-4);}
+.fl[aria-checked="true"] span{color:var(--mint);}
+
+/* FDA disclaimer — design.md §10.3 */
+.fda{margin-top:30px;padding-top:14px;border-top:1px solid rgba(255,255,255,.09);
+  font-size:12px;line-height:1.5;color:var(--fg-4);max-width:66ch;opacity:.85;}
+
+/* progress rail */
+#rail{position:fixed;z-index:40;right:20px;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:11px;}
+#rail button{width:7px;height:7px;padding:0;border:0;border-radius:50%;cursor:pointer;
+  background:rgba(255,255,255,.22);
+  transition:background-color var(--d-micro) var(--ease),height var(--d-micro) var(--ease);}
+#rail button.on{background:var(--mint);height:22px;border-radius:4px;}
+
+#hint{position:fixed;z-index:40;left:50%;bottom:26px;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  font-size:12px;letter-spacing:2.4px;color:var(--fg-4);transition:opacity var(--d-enter) var(--ease);}
+#hint .m{width:20px;height:31px;border:1.4px solid rgba(255,255,255,.3);border-radius:11px;position:relative;}
+#hint .m::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:6px;margin-left:-1.5px;
+  border-radius:2px;background:var(--mint);animation:wheel 1.7s ease-in-out infinite;}
+@keyframes wheel{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.25}}
+
+@media (max-width:900px){
+  #product{right:auto;left:50%;margin-left:-105px;width:210px;height:330px;margin-top:-165px;opacity:.3;}
+  .navlinks{display:none;}
+  .col{max-width:100%;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .r,.rl{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;}
+  #hint .m::after{animation:none;}
+}
+</style>
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div id="veil" aria-hidden="true"></div>
+
+<nav>
+  <span class="brand">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 21c5-2.4 8-6.3 8-11V5.6L12 3 4 5.6V10c0 4.7 3 8.6 8 11Z" stroke="#31D0A5" stroke-width="1.7" stroke-linejoin="round"/>
+      <path d="M8.6 11.6 11 14l4.6-4.8" stroke="#31D0A5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    URVI
+  </span>
+  <span class="navlinks" id="navlinks">
+    <a href="#s0" class="on">Home</a><a href="#s1">Benefits</a><a href="#s2">Ingredients</a>
+    <a href="#s3">Results</a><a href="#s4">Flavors</a><a href="#s5">Shop</a>
+  </span>
+  <a class="navcta" href="#s5">Shop now →</a>
+</nav>
+
+<div id="product" aria-hidden="true">
+  <div class="pouch">
+    <span class="sheenL"></span><span class="sheenR"></span><span class="seal"></span>
+    <span class="wm">URVI</span>
+    <span class="bs">Brain Support</span>
+    <span class="ing" style="top:60%">L-Tyrosine</span>
+    <span class="ing" style="top:69%">Acetyl-L-Carnitine</span>
+    <span class="ing" style="top:78%">Caffeine</span>
+    <span class="fine" style="top:89%">DIETITIAN MADE · SUPPLEMENT CERTIFIED</span>
+  </div>
+  <span class="chew" style="left:80%;top:31%;width:40px;height:34px;transform:rotate(13deg)"></span>
+  <span class="chew" style="left:86%;top:52%;width:52px;height:45px;transform:rotate(-9deg)"></span>
+  <span class="chew" style="left:78%;top:73%;width:46px;height:40px;transform:rotate(7deg)"></span>
+  <span class="chew" style="left:-9%;top:80%;width:38px;height:33px;transform:rotate(-16deg)"></span>
+</div>
+
+<main id="scroller">
+
+  <section id="s0"><div class="wrap"><div class="col">
+    <span class="eyebrow r"><b>NEW</b> URVI Brain Support Series</span>
+    <h1 class="r d1">Engineered for Focus.<em>Built to Think.</em></h1>
+    <p class="lede r d2">Daily chews formulated for clarity, sustained attention, and clean mental energy — without the crash.</p>
+    <a class="btn r d3" href="#s5">Shop now →</a>
+    <div class="ticks r d4">
+      <span class="tick"><i>✓</i> Clinically dosed</span>
+      <span class="tick"><i>✓</i> No sugar crash</span>
+      <span class="tick"><i>✓</i> Third-party tested</span>
+    </div>
+    <div class="stats r d5">
+      <div class="stat"><b data-count="98" data-suffix="%">0%</b><span>Would reorder</span></div>
+      <div class="stat"><b data-count="250" data-suffix="K+">0</b><span>Pouches shipped</span></div>
+    </div>
+  </div></div></section>
+
+  <section id="s1"><div class="wrap"><div class="col">
+    <p class="kicker r">WHY URVI</p>
+    <h2 class="r d1">Three things your afternoon needs.</h2>
+    <div class="cards" style="margin-top:30px">
+      <div class="card rl d2"><h3>Lightning Focus</h3><p>L-Tyrosine replenishes the neurotransmitters that attention burns through, so hour six feels like hour one.†</p></div>
+      <div class="card rl d3"><h3>Sustained Clarity</h3><p>Acetyl-L-Carnitine supports cellular energy in neural tissue — steady output instead of a spike and a slump.†</p></div>
+      <div class="card rl d4"><h3>Clean Energy</h3><p>A measured 80mg of caffeine paired with L-theanine. Lift without the jitter, and nothing to come down from.†</p></div>
+    </div>
+  </div></div></section>
+
+  <section id="s2"><div class="wrap">
+    <p class="kicker r">WHAT'S INSIDE</p>
+    <h2 class="r d1">Three actives. Nothing to hide.</h2>
+    <p class="lede r d2">Every pouch carries the full clinical dose. No proprietary blends, no filler, no rounding down.</p>
+    <div class="acts">
+      <div class="act r d3"><div class="dose">500mg</div><h4>L-Tyrosine</h4><p>Precursor to dopamine and norepinephrine. Studied for cognitive performance under load.†</p></div>
+      <div class="act r d4"><div class="dose">250mg</div><h4>Acetyl-L-Carnitine</h4><p>Crosses the blood-brain barrier to support mitochondrial energy in neural tissue.†</p></div>
+      <div class="act r d5"><div class="dose">80mg</div><h4>Caffeine + L-Theanine</h4><p>Paired 1:2. The combination is what removes the jitter, not the caffeine alone.</p></div>
+    </div>
+    <p class="fda r d5">† These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Contains caffeine.</p>
+  </div></section>
+
+  <section id="s3"><div class="wrap"><div class="col">
+    <p class="kicker r">THE RESULTS</p>
+    <h2 class="r d1">Measured, not claimed.</h2>
+    <p class="lede r d2">Self-reported outcomes from 4,200 subscribers across a twelve-week window.</p>
+    <div class="stats" style="margin-top:34px">
+      <div class="stat r d3"><b data-count="98" data-suffix="%">0%</b><span>Would reorder</span></div>
+      <div class="stat r d4"><b data-count="87" data-suffix="%">0%</b><span>Sharper by week 2</span></div>
+      <div class="stat r d5"><b data-count="0" data-suffix="%">0%</b><span>Reported jitters</span></div>
+    </div>
+  </div></div></section>
+
+  <section id="s4"><div class="wrap">
+    <p class="kicker r">PICK YOUR FLAVOR</p>
+    <h2 class="r d1">Four ways to take it.</h2>
+    <div class="flavors" role="radiogroup" aria-label="Choose your flavor">
+      <button class="fl r d2" role="radio" aria-checked="true"><span class="sw" style="background:linear-gradient(135deg,#F49AA3,#C74C5A)" aria-hidden="true"></span><b>Original Berry</b><span>Selected</span></button>
+      <button class="fl r d3" role="radio" aria-checked="false"><span class="sw" style="background:linear-gradient(135deg,#DAD5E8,#A9A2C4)" aria-hidden="true"></span><b>Wild Elderflower</b><span>Select</span></button>
+      <button class="fl r d4" role="radio" aria-checked="false"><span class="sw" style="background:linear-gradient(135deg,#F8D57C,#E0A32F)" aria-hidden="true"></span><b>Citrus Peel</b><span>Select</span></button>
+      <button class="fl r d5" role="radio" aria-checked="false"><span class="sw" style="background:linear-gradient(135deg,#EE8272,#C13F31)" aria-hidden="true"></span><b>Blood Orange</b><span>Select</span></button>
+    </div>
+  </div></section>
+
+  <section id="s5"><div class="wrap" style="text-align:center">
+    <h2 class="r" style="font-size:clamp(32px,5vw,60px)">Start thinking clearly.</h2>
+    <p class="lede r d1" style="margin:20px auto 0;max-width:36ch">Thirty servings. Thirty days to feel it, or your money back.</p>
+    <a class="btn alt r d2" href="#s0" style="margin-top:32px">Shop URVI — $49.90</a>
+    <div class="ticks r d3" style="justify-content:center;margin-top:30px">
+      <span class="tick"><i>✓</i> Free shipping over $50</span>
+      <span class="tick"><i>✓</i> 30-day guarantee</span>
+      <span class="tick"><i>✓</i> Cancel anytime</span>
+    </div>
+    <p class="fda r d3" style="margin-left:auto;margin-right:auto;text-align:left">† These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Contains caffeine — not for children or those sensitive to caffeine.</p>
+  </div></section>
+
+</main>
+
+<div id="rail" role="tablist" aria-label="Sections"></div>
+<div id="hint"><span class="m" aria-hidden="true"></span>SCROLL</div>
+
+<script>
+(function(){
+  var scroller = document.getElementById('scroller');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section'));
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var rail = document.getElementById('rail');
+  var NAMES = ['Home','Benefits','Ingredients','Results','Flavors','Shop'];
+  sections.forEach(function(s,i){
+    var b = document.createElement('button');
+    b.type='button'; b.setAttribute('role','tab'); b.setAttribute('aria-label',NAMES[i]);
+    b.onclick = function(){ s.scrollIntoView({behavior: reduce?'auto':'smooth'}); };
+    rail.appendChild(b);
+  });
+  var dots = rail.querySelectorAll('button');
+  var navA = document.querySelectorAll('#navlinks a');
+
+  var target = 0, prog = 0, active = -1;
+  function readProgress(){
+    var max = scroller.scrollHeight - scroller.clientHeight;
+    target = max > 0 ? scroller.scrollTop / max : 0;
+  }
+  scroller.addEventListener('scroll', readProgress, {passive:true});
+  readProgress();
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && e.intersectionRatio > 0.5){
+        e.target.classList.add('on');
+        var i = sections.indexOf(e.target);
+        if(i !== active){
+          active = i;
+          dots.forEach(function(d,j){ d.classList.toggle('on', j===i); d.setAttribute('aria-selected', j===i); });
+          navA.forEach(function(a,j){ a.classList.toggle('on', j===i); });
+          document.getElementById('hint').style.opacity = i===0 ? '1' : '0';
+          runCounters(sections[i]);
+        }
+      }
+    });
+  }, {root: scroller, threshold:[0.5]});
+  sections.forEach(function(s){ io.observe(s); });
+  sections[0].classList.add('on');
+
+  function runCounters(scope){
+    scope.querySelectorAll('[data-count]').forEach(function(el){
+      if(el.dataset.done) return;
+      el.dataset.done = '1';
+      var to = parseFloat(el.getAttribute('data-count'));
+      var suf = el.getAttribute('data-suffix') || '';
+      if(reduce){ el.textContent = to + suf; return; }
+      var t0 = performance.now();
+      (function step(now){
+        var k = Math.min(1,(now-t0)/1100);
+        el.textContent = Math.round(to*(1 - Math.pow(1-k,3))) + suf;
+        if(k<1) requestAnimationFrame(step);
+      })(t0);
+    });
+  }
+  runCounters(sections[0]);
+
+  /* flavor radiogroup */
+  var fls = [].slice.call(document.querySelectorAll('.fl'));
+  fls.forEach(function(f,i){
+    f.addEventListener('click', function(){ pick(i); });
+    f.addEventListener('keydown', function(e){
+      var n = null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown') n=(i+1)%fls.length;
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp') n=(i-1+fls.length)%fls.length;
+      if(n===null) return; e.preventDefault(); pick(n); fls[n].focus();
+    });
+  });
+  function pick(i){
+    fls.forEach(function(f,j){
+      f.setAttribute('aria-checked', j===i?'true':'false');
+      f.querySelector('span:not(.sw)').textContent = j===i?'Selected':'Select';
+    });
+  }
+
+  /* ---------------- ribbon field, design.md §7 ---------------- */
+  var cv = document.getElementById('field');
+  var ctx = cv.getContext('2d');
+  var W=0,H=0;
+  function resize(){
+    var dpr = Math.min(1.5, window.devicePixelRatio||1);      /* §7 cap 1.5 */
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var TAU = Math.PI*2;
+  var RIB = [
+    {o:0.00,a1:0.135,k1:0.0044,w1:0.00040,a2:0.048,k2:0.0097,w2:0.00068,ph:0.0,th:0.20,tk:0.0037,tw:0.00031,top:'150,215,255',bot:'30,90,190',al:0.17,mesh:true, crest:0.95},
+    {o:-0.10,a1:0.110,k1:0.0052,w1:0.00053,a2:0.037,k2:0.0119,w2:0.00046,ph:1.9,th:0.13,tk:0.0044,tw:0.00039,top:'120,195,255',bot:'24,72,165',al:0.13,mesh:false,crest:0.85},
+    {o:0.14,a1:0.155,k1:0.0038,w1:0.00034,a2:0.055,k2:0.0083,w2:0.00059,ph:3.4,th:0.17,tk:0.0033,tw:0.00028,top:'96,175,245', bot:'18,58,140',al:0.12,mesh:false,crest:0.70},
+    {o:-0.20,a1:0.090,k1:0.0062,w1:0.00047,a2:0.031,k2:0.0136,w2:0.00076,ph:5.1,th:0.09,tk:0.0055,tw:0.00050,top:'140,205,255',bot:'26,80,175',al:0.09,mesh:false,crest:0.55},
+    {o:0.25,a1:0.125,k1:0.0049,w1:0.00030,a2:0.042,k2:0.0104,w2:0.00042,ph:2.4,th:0.11,tk:0.0040,tw:0.00035,top:'80,160,235', bot:'14,46,120',al:0.10,mesh:false,crest:0.45}
+  ];
+  var BOK = [
+    {x:0.86,y:0.42,r:60,a:.075,fx:.00011,fy:.00017,ax:28,ay:22},
+    {x:0.62,y:0.30,r:34,a:.058,fx:.00016,fy:.00012,ax:24,ay:28},
+    {x:0.22,y:0.72,r:74,a:.048,fx:.00009,fy:.00014,ax:32,ay:20}
+  ];
+
+  function waveY(r,x,t,drift){
+    return H*(0.5 + r.o) + drift
+      + H*r.a1*Math.sin(x*r.k1 + t*r.w1 + r.ph)
+      + H*r.a2*Math.sin(x*r.k2 - t*r.w2 + r.ph*1.7);
+  }
+  function bandH(r,x,t){
+    return H*r.th*(0.40 + 0.60*Math.abs(Math.sin(x*r.tk + t*r.tw + r.ph)));
+  }
+
+  var STEP = 7;
+  function frame(t){
+    prog += (target - prog) * 0.075;
+    var drift  = -prog * H * 0.55;
+    var energy = 1 + prog * 0.55;
+
+    ctx.globalCompositeOperation = 'source-over';
+    var g = ctx.createLinearGradient(0,0,W*0.55,H);
+    g.addColorStop(0,'#071A33'); g.addColorStop(0.5,'#040F21'); g.addColorStop(1,'#02070F');
+    ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation = 'lighter';
+
+    for(var i=0;i<BOK.length;i++){
+      var b = BOK[i];
+      var bx = b.x*W + Math.sin(t*b.fx+i)*b.ax;
+      var by = b.y*H + Math.cos(t*b.fy+i)*b.ay + drift*0.35;
+      var bg = ctx.createRadialGradient(bx,by,0,bx,by,b.r);
+      bg.addColorStop(0,'rgba(120,185,255,'+b.a.toFixed(3)+')');
+      bg.addColorStop(.7,'rgba(90,150,230,'+(b.a*.5).toFixed(3)+')');
+      bg.addColorStop(1,'rgba(90,150,230,0)');
+      ctx.fillStyle = bg; ctx.beginPath(); ctx.arc(bx,by,b.r,0,TAU); ctx.fill();
+    }
+
+    for(var ri=RIB.length-1; ri>=0; ri--){
+      var r = RIB[ri], x;
+      var d = drift * (0.5 + ri*0.22);
+      var tt = t * energy;
+
+      ctx.beginPath();
+      for(x=0;x<=W;x+=STEP){ var y=waveY(r,x,tt,d); if(x===0)ctx.moveTo(x,y); else ctx.lineTo(x,y); }
+      for(x=W;x>=0;x-=STEP){ ctx.lineTo(x, waveY(r,x,tt,d)+bandH(r,x,tt)); }
+      ctx.closePath();
+      var lg = ctx.createLinearGradient(0,H*(0.5+r.o)+d-H*r.a1,0,H*(0.5+r.o)+d+H*(r.a1+r.th));
+      lg.addColorStop(0,'rgba('+r.top+','+r.al.toFixed(3)+')');
+      lg.addColorStop(1,'rgba('+r.bot+',0)');
+      ctx.fillStyle = lg; ctx.fill();
+
+      if(r.mesh){
+        var ROWS = 16;                                   /* §7: 16-row mesh */
+        for(var mx=0; mx<=W; mx+=6){
+          var y0 = waveY(r,mx,tt,d), h = bandH(r,mx,tt);
+          for(var q=0;q<ROWS;q++){
+            var v = q/(ROWS-1);
+            var a = 0.28*Math.pow(1-v,1.5);
+            if(a<0.012) continue;
+            ctx.fillStyle = 'rgba(130,200,255,'+a.toFixed(3)+')';
+            ctx.fillRect(mx + (q&1?3:0), y0 + v*h, 1.2, 1.2);
+          }
+        }
+      }
+
+      /* §7 crest: exactly 10@5%, 4.5@10%, 1.35@80% */
+      var passes = [[10,0.05],[4.5,0.10],[1.35,0.80]];
+      for(var pi=0;pi<passes.length;pi++){
+        ctx.lineWidth = passes[pi][0];
+        ctx.strokeStyle = 'rgba(175,225,255,'+(passes[pi][1]*r.crest).toFixed(3)+')';
+        ctx.beginPath();
+        for(var cx=0;cx<=W;cx+=STEP){
+          var cyv = waveY(r,cx,tt,d);
+          if(cx===0) ctx.moveTo(cx,cyv); else ctx.lineTo(cx,cyv);
+        }
+        ctx.stroke();
+      }
+    }
+
+    var lead = RIB[0], ld = drift*0.5, lt = t*energy;
+    for(var s=0;s<3;s++){
+      var hx = ((lt*0.030 + s*(W/2.4)) % (W+240)) - 120;
+      if(hx<-20||hx>W+20) continue;
+      var hy = waveY(lead,hx,lt,ld);
+      var hg = ctx.createRadialGradient(hx,hy,0,hx,hy,30);
+      hg.addColorStop(0,'rgba(225,245,255,0.55)');
+      hg.addColorStop(.35,'rgba(140,205,255,0.18)');
+      hg.addColorStop(1,'rgba(140,205,255,0)');
+      ctx.fillStyle = hg; ctx.beginPath(); ctx.arc(hx,hy,30,0,TAU); ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      ctx.beginPath(); ctx.arc(hx,hy,1.9,0,TAU); ctx.fill();
+    }
+    ctx.globalCompositeOperation = 'source-over';
+
+    var p = document.getElementById('product');
+    p.style.transform = 'translate3d('+(prog*-40).toFixed(2)+'px,'+(-prog*90).toFixed(2)+'px,0) rotate('+(-7+prog*26).toFixed(2)+'deg) scale('+(1-prog*0.2).toFixed(3)+')';
+    p.style.opacity = String(Math.max(0.22, 1 - prog*0.5));
+  }
+
+  if(reduce){
+    frame(0);
+    scroller.addEventListener('scroll', function(){ readProgress(); prog = target; frame(0); }, {passive:true});
+  } else {
+    var raf = 0, last = 0, running = true;
+    function loop(now){
+      raf = requestAnimationFrame(loop);
+      if(now - last < 33) return;                        /* §7 throttle 30fps */
+      last = now;
+      frame(now);
+    }
+    raf = requestAnimationFrame(loop);
+    document.addEventListener('visibilitychange', function(){
+      if(document.hidden){ cancelAnimationFrame(raf); running = false; }   /* §7 */
+      else if(!running){ running = true; last = 0; raf = requestAnimationFrame(loop); }
+    });
+  }
+
+  window.addEventListener('keydown', function(e){
+    if(['ArrowDown','PageDown','ArrowUp','PageUp','Home','End'].indexOf(e.key) === -1) return;
+    if(document.activeElement && document.activeElement.closest('.flavors')) return;
+    var i = active;
+    if(e.key==='ArrowDown'||e.key==='PageDown') i = Math.min(sections.length-1, i+1);
+    if(e.key==='ArrowUp'||e.key==='PageUp') i = Math.max(0, i-1);
+    if(e.key==='Home') i = 0;
+    if(e.key==='End') i = sections.length-1;
+    e.preventDefault();
+    sections[i].scrollIntoView({behavior: reduce?'auto':'smooth'});
+  });
+})();
+</script>

@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  /* ground */
+  --color-letterbox: #000000;
+  --color-wash-top: #0a1e38;
+  --color-wash-mid: #071527;
+  --color-wash-btm: #040c18;
+
+  /* brand + interactive */
+  --color-brand: #2d7ff0;
+  --color-brand-hover: #4a8ff5;
+  --color-brand-active: #2470db;
+  --color-brand-bar: #1f6fe0;
+  --color-brand-ring: #4e9bf5;
+  --color-surface: #111c2e;
+  --color-surface-sel: #0d2646;
+  --color-line: #2a3547;
+  --color-line-hover: #3a4a66;
+  --color-line-thumb: #26324a;
+  --color-rule: #22314a;
+  --color-sep: #31425c;
+
+  /* text */
+  --color-fg: #ffffff;
+  --color-fg-nav: #e2e9f3;
+  --color-fg-strong: #e8eef7;
+  --color-fg-2: #c3d0e2;
+  --color-fg-3: #c4d0e0;
+  --color-fg-4: #a9b8ce;
+  --color-fg-muted: #8fa3be;
+  --color-fg-faint: #8497b0;
+  --color-fg-disabled: #5a6a83;
+
+  /* semantic */
+  --color-success: #2fa96b;
+  --color-warning: #d8a032;
+  --color-danger: #e0554e;
+
+  --font-display: "Archivo Narrow", "Arial Narrow", sans-serif;
+  --font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  html { background: #06101e; }
+  body {
+    margin: 0;
+    background: #06101e;
+    color: #fff;
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* comp geometry relies on exact line boxes */
+  .t { line-height: 1.21; }
+}
+
+@layer utilities {
+  .focus-ring {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
